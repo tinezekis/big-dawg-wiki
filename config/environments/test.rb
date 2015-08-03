@@ -39,4 +39,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+
+  # Add the following if we get errors about missing constants:
+  # config.allow_concurrency = false
 end
