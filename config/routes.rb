@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'users#login'
   resources :users
 
+
   #shows most recent version of article, shows 'top 10' articles on article index
   get 'articles/:article_name' => 'article#show_recent'
   get 'articles/you_should_read' => 'article#index'
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
   #show the category index, show all articles associated with a given category
   get 'categories/index' => 'category#index'
   get 'categories/:category_name' => 'category#show'
+
 
 
 
