@@ -1,5 +1,11 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 .nav-bar {
-  width: 70%;
+  width: 75%;
   height: 80px;
   margin: 0 auto;
   background-color: green;
@@ -37,7 +43,7 @@ input {
 }
 
 #sidebar {
-  width: 20%;
+  width: 30%;
   height: 100%;
   padding-left: 5%;
   background-color: green;
@@ -51,7 +57,7 @@ input {
 }
 
 #show-article {
-  width: 60%;
+  width: 70%;
   float: right;
   padding: 5%;
 }
