@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20150803162555) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +24,37 @@ ActiveRecord::Schema.define(version: 20150803162555) do
     t.string   "password_digest"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "orig_author_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categorizations", force: :cascade do |t|
+    t.integer  "category_id"
+    t.integer  "version_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "versions", force: :cascade do |t|
+    t.integer  "updating_author_id"
+    t.integer  "article_id"
+    t.text     "content"
+    t.text     "footnotes"
+    t.boolean  "is_most_recent"
+    t.boolean  "is_published"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+
   end
 
 end
