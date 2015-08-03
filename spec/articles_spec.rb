@@ -1,2 +1,0 @@
-describe "article" do
-end
