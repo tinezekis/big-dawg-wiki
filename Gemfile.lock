@@ -177,11 +177,8 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails (~> 4.1.0)
-<<<<<<< HEAD
   friendly_id
-=======
   faker
->>>>>>> b1d556240d642060203d13d29f08b24dbec2bba6
   jbuilder (~> 2.0)
   jquery-rails
   pg
