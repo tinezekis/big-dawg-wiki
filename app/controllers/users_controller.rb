@@ -1,8 +1,4 @@
 class UsersController < ApplicationController
-  def login
-    # @user = User.find()
-  end
-
   def new
     @user = User.new
   end
