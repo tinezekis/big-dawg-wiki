@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Article do
   let(:user) { User.create!(username: "sampleuser", permission_level: "author", password: "password") }
-  let(:article) { Article.new(orig_author: user, title: "When Awesome Groups Make Awesome Apps") }
+  let(:article) { Article.create!(orig_author: user, title: "When Awesome Groups Make Awesome Apps") }
 
   describe '#orig_author' do
     it 'must have an original author' do
