@@ -1,0 +1,34 @@
+.container {
+  width: 75%;
+  height: 700px;
+  margin: 0 auto;
+  border: solid, 1px, black;
+}
+
+#sidebar {
+  width: 20%;
+  height: 700px;
+  padding: 5%;
+  background-color: green;
+  float: left;
+  color: white;
+}
+
+#sidebar ol {
+  font-size: 12px;
+  padding-left: 10%;
+}
+
+#show-article {
+  width: 60%;
+  float: right;
+  padding: 5%;
+}
+
+#show-article h3 {
+  color: green;
+}
+
+#show-article h5 {
+  color: green;
+}
