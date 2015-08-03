@@ -9,34 +9,41 @@
 
 ## MVP User Stories
 
-Note: italicized user stories are for after MVP
+* As a user, I can (AUIC) log in as an author
+* AUIC sign up as a new user (author level)
+* AUIC create a new (unpublished) article (when logged in)
+*
+
+## Final Product User Stories
 
 * As a user, I can (AUIC) log in as a guest
 * AUIC create an account as an author (and subsequently log in as an author)
 * AUIC be appointed as an admin by another admin
 * AUIC log out
 
-### _Guest User Stories_
+### Guest User Stories
 * As a guest user, I can (AGUIC) read articles that have been published
+* AGUIC see a warning on any articles that do not have a bibliography/footnotes
 * AGUIC view older versions of an article
 * AGUIC navigate within an article using a table of contents (linked list of sections)
 * AGUIC click on a link to photos associated with a particular article
 * AGUIC search for articles by category or key words
 * AGUIC view a list of all categories
 * AGUIC view a list of all articles associated with a particular category
+* AGUIC view the 10 featured articles at the root (ten longest)
 
 ### Author User Stories
 * As an Author User, I can (AAUIC) do everything a guess user can do AND...
 * AAUIC create a new article and save (without publishing)
 * AAUIC edit an unpublished article that I have created
-* _AAUIC use markdown in the text of my article to bold, italicize, and make unordered and ordered lists_
-* _AAUIC preview an article's markdown text?_
+* AAUIC use markdown in the text of my article to bold, italicize, make unordered and ordered lists, and add sections
+* AAUIC preview an article's markdown text
 * AAUIC publish an article
 * AAUIC edit an article that I have authored (create a new version)
 * AAUIC delete an article that I have authored (destroy all verions)
 * AAUIC categorize my article by using existing categories or creating new ones
 
 ### Admin (Big Dog) Usesr Stories
-* _As a Big Dog User, I can (ABDUIC) do everything an author user can do AND..._
-* _ABDUIC edit an article that ANYONE has authored (create a new version)_
-* _ABDUIC delete an article that ANYONE has authored (destroy all versions)_
+* As a Big Dog User, I can (ABDUIC) do everything an author user can do AND...
+* ABDUIC edit an article that ANYONE has authored (create a new version)
+* ABDUIC delete an article that ANYONE has authored (destroy all versions)
