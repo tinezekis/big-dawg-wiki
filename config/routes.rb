@@ -26,9 +26,6 @@ Rails.application.routes.draw do
   get 'categories/index' => 'category#index'
   get 'categories/:category_name' => 'category#show'
 
-
->>>>>>> 164b69c457e777a635e7382e1118ad92726224c9
-
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
