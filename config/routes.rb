@@ -4,11 +4,25 @@ Rails.application.routes.draw do
   root 'users#login'
   resources :users
 
+  #shows most recent version of article, shows 'top 10' articles on article index
+  get 'articles/:article_name' => 'article#show_recent'
+  get 'articles/you_should_read' => 'article#index'
 
-  resources :categories
+  #creates a new version for the given article
+  get 'articles/:article_title/new_version' => 'version#new'
+  post 'articles/:article_title' => 'version#create'
 
-  resources :articles
+  #allows you to edit a version that has not been published (if published, encourage them to write a new version),
+  get 'articles/:article_title/versions/:id/edit' => 'version#edit'
+  put 'articles/:article_title/versions/:id' =>'version#update'
 
+  #create a new article
+  get 'articles/new' => 'article#new'
+  post 'articles' => 'article#create'
+
+  #show the category index, show all articles associated with a given category
+  get 'categories/index' => 'category#index'
+  get 'categories/:category_name' => 'category#show'
 
 
 
