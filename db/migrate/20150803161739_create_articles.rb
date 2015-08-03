@@ -3,6 +3,7 @@ class CreateArticles < ActiveRecord::Migration
     create_table :articles do |t|
       t.string :title
       t.integer :orig_author_id
+      t.string :slug
 
       t.timestamps null: false
     end
