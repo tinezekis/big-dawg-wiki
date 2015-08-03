@@ -56,6 +56,6 @@
 * AAUIC categorize my article by using existing categories or creating new ones
 
 ### Admin (Big Dawg) Usesr Stories
-* As a Big Dog User, I can (ABDUIC) do everything an author user can do AND...
+* As a Big Dawg User, I can (ABDUIC) do everything an author user can do AND...
 * ABDUIC edit an article that ANYONE has authored (create a new version)
 * ABDUIC delete an article that ANYONE has authored (destroy all versions)
