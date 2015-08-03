@@ -1,0 +1,2 @@
+describe "article" do
+end
