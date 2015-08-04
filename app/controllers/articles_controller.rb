@@ -45,6 +45,7 @@ class ArticlesController < ApplicationController
 
   def search
     @articles = Article.search(params[:term])
+    render 'index'
     # view not implemented yet
     # render: index
   end

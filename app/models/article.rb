@@ -33,7 +33,7 @@ class Article < ActiveRecord::Base
     self.all.each do |article|
       no_match = [word] - article.search_words
       unless no_match.any?
-        return_ary << article
+        return_ary << article.current_version
       end
     end
 

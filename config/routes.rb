@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
 
 
-  get 'articles/search' => 'article#search'
+  get 'articles/search' => 'articles#search'
   # 'articles/search?term=xyz'
   #shows 'top 10' articles on article index
   get 'articles/you_should_read' => 'articles#index'
