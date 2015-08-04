@@ -1,6 +1,14 @@
 <div class="row">
   <h1 class="white-text" ><%= @version.article.title %></h1>
 </div>
+
+<% if @version.is_most_recent == false %>
+  <% most_recent = @version.article.current_version %>
+  <div>
+    <p>There is a more recent version of this article, which you can view <a href="/articles/<%= @version.article.to_param %>/versions/<%= most_recent.id %>">here</a>.</p>
+  </div>
+<% end %>
+
 <div class="row">
   <div class="col s6 offset-s4">
   <h4 class="white-text">Written by <%= @version.article.orig_author.username %></h4>
