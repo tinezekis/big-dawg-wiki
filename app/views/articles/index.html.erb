@@ -1,6 +1,10 @@
 <div class="row">
 	<div class="col s12">
-		<h2 class="grey-text">Read all of these, dawg.</h2>
+    <% if current_user.permission_level == 'big_dawg' %>
+		  <h2 class="grey-text">Read all of these, Dawg.</h2>
+    <% else %>
+      <h2 class="grey-text">Read all of these, dawg.</h2>
+    <% end %>
 	</div>
 </div>
 
