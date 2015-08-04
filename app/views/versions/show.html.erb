@@ -9,17 +9,19 @@
     <% end %>
   </div>
 
-  <div class="col s3">
-    <h4>Contents</h4>
-    <ul>
-      <% section_num = 0 %>
-      <% @sections.each do |section| %>
-        <li><a class="purple-text" href="#<%= section_num %>"><%= section %></a></li>
-        <% section_num += 1 %>
-      <% end %>
-    </ul>
+  <% if @sections.length > 0 %>
+    <div class="col s3">
+      <h4>Contents</h4>
+      <ul>
+        <% section_num = 0 %>
+        <% @sections.each do |section| %>
+          <li><a class="purple-text" href="#<%= section_num %>"><%= section %></a></li>
+          <% section_num += 1 %>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
+<% end %>
 
 <div class="row">
   <div class="col s6 offset-s3">

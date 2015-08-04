@@ -190,9 +190,3 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
-
-<<<<<<< HEAD
-=======
-BUNDLED WITH
-   1.10.4
->>>>>>> 13be23b7a2b00a2bba556869482a3ddc5d9d00fb
