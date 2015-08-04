@@ -16,7 +16,7 @@ class VersionsController < ApplicationController
     if current_user
       @version = Version.new(content: params[:version][:content], footnotes: params[:version][:footnotes])
       @version.updating_author = current_user
-      @version.categories = Category.parse_categories_from_string(params[:version][:category_adder])
+      @version.categories = Category.parse_categories_from_string(params[:categories])
       slug = params[:article_title]
       @article = Article.find(Article.match_id(slug))
       @version.article = @article
