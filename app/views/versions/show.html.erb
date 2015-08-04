@@ -10,7 +10,7 @@
     </ul>
   </div>
   <div id="show-article">
-    <% if current_user == @version.article.orig_author || current_user.permission_level == "big dawg" %>
+    <% if current_user == @version.article.orig_author || current_user.permission_level == "big_dawg" %>
       <%= link_to 'Edit / Delete', new_version_path %>
     <% end %>
     <h1><%= @version.article.title %></h1>
