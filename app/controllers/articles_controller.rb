@@ -22,6 +22,7 @@ class ArticlesController < ApplicationController
   def new
     if current_user
       @article = Article.new
+      render :"articles/new"
     else
       redirect_to "/"
     end

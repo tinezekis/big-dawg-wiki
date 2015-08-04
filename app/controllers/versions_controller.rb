@@ -36,7 +36,7 @@ class VersionsController < ApplicationController
     if @version.is_published == true
       redirect_to "/"
     else
-      render :"views/versions/edit"
+      render :"versions/edit"
     end
   end
 
@@ -48,6 +48,8 @@ class VersionsController < ApplicationController
 
   def show
     @version = Version.find(params[:id])
+    @sections = @version.get_sections
+    @markdown_content = @version.generate_markdown
   end
 
   def publish
