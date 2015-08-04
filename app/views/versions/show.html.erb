@@ -1,0 +1,22 @@
+<div class="container">
+  <div id="sidebar">
+    <h3>Contents</h3>
+    <ul>
+      <% @sections.each do |section| %>
+        <li><%= section %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div id="show-article">
+    <h1><%= @article.title %></h1>
+    <h3>Written by <%= @article.orig_author.username %></h3>
+    <% if @article.orig_author != @version.updating_author %>
+    <h5>Edited by <%= @version.updating_author.username %></h5>
+    <% end %>
+    <%= @markdown_content.html_safe %>
+    <% if @version.footnotes %>
+      <h5>Footnotes</h5>
+      <p><%= @version.footnotes %></p>
+    <% end %>
+  </div>
+</div>

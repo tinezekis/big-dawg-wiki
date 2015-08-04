@@ -1,6 +1,12 @@
 class ArticlesController < ApplicationController
 
   def show_recent
+    slug = params[:article_title]
+    @article = Article.find(Article.match_id(slug))
+    @version = @article.versions.where(is_most_recent: true)[0]
+    @sections = @version.get_sections
+    @markdown_content = @version.generate_markdown
+    render :"versions/show"
     #this should find the most recent version associated with the given article and display it on a show page
   end
 
