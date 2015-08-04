@@ -25,8 +25,9 @@ Rails.application.routes.draw do
   post 'articles/:article_title' => 'versions#create', as: :versions
 
   #allows you to edit a version that has not been published (if published, encourage them to write a new version),
+  post 'articles/:article_title/versions/:id' =>'versions#update', as: :version
   get 'articles/:article_title/versions/:id/edit' => 'versions#edit'
-  put 'articles/:article_title/versions/:id' =>'versions#update', as: :version
+
 
   get 'articles/:article_title/versions/:id' => 'versions#show'
   get 'articles/:article_title/versions/:id/publish' => 'versions#publish'
