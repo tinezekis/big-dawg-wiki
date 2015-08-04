@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
     else
       # flash.now[:notice] = 'Invalid Email/password combination'
       @errors = 'Invalid email/password combination'
-      p @errors
       render 'new'
     end
   end
