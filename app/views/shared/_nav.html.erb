@@ -1,17 +1,24 @@
-<nav>
-  <% if current_user %>
-  <span><%= current_user.username %> </span> |
-  <span><%= link_to 'Create new article', new_article_path %></span> |
-  <span><%= link_to 'Logout', :logout, method: :delete %></span> |
-  <span>
-    <form id='search-bar' action="/articles/search" method='get'>
-      <input type='text' name='term'>
-      <input type='submit' value='search'>
-    </form>
-  </span>
-
-  <% else %>
-  <span>Login or sign up Below!</span>
-
-  <% end %>
-</nav>
+<div class="navbar-fixed">
+  <nav class="green darken-1">
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <% if current_user %>
+          <li>
+            <form id='search-bar' action="/articles/search" method='get'>
+              <div class="input-field">
+                <input id="search" type="search" required>
+                <label for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+          </li>
+          <li><%= current_user.username %></li>
+          <li><%= link_to 'Create new article', new_article_path %></li>
+          <li><%= link_to 'Logout', :logout, method: :delete %></li>
+      <% else %>
+        <li>Login or sign up Below!</li>
+      <% end %>
+      </ul>
+    </div>
+  </nav>
+</div>
