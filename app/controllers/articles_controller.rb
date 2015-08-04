@@ -10,11 +10,26 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    #redirect to a page where we can title the article. This will render a partial that we can move to main page if we use js
+    if current_user
+      @article = Article.new
+    else
+      redirect_to "/"
+    end
   end
 
   def create
-    #save that new article you just created, redirect to new version page
+
+    if current_user
+      @article = Article.new({title:params[:article][:title],orig_author_id:current_user.id})
+      if @article.save
+        redirect_to "/articles/#{@article.to_param}/new_version"
+      else
+        @errors = @article.errors.full_messages
+        render :"views/articles/new"
+      end
+    else
+      redirect_to "/"
+    end
   end
 
   def search
@@ -22,6 +37,7 @@ class ArticlesController < ApplicationController
     # view not implemented yet
     # render: index
   end
+
 
 
 end
