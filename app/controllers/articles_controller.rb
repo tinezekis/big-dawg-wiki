@@ -14,6 +14,7 @@ class ArticlesController < ApplicationController
     #this should show the ten longest (order by content.length DESC limit 10) most recent versions on an index page
     @recent_versions = Article.recent_versions
     ## refactor later
+    p @recent_versions
     @ordered_by_content_length = @recent_versions.sort_by{|version| version.content.length}.reverse ## to get desc
     #for edwin
     @articles = @ordered_by_content_length[0..9]

@@ -30,7 +30,7 @@ class Article < ActiveRecord::Base
   def self.search(word)
     return_ary = []
 
-    self.all.each do |article|
+    self.published_articles.each do |article|
       no_match = [word] - article.search_words
       unless no_match.any?
         return_ary << article.current_version
@@ -41,18 +41,20 @@ class Article < ActiveRecord::Base
   end
 
   def current_version
-    self.versions.find_by(is_most_recent: false) #true)
+    self.versions.find_by(is_most_recent: true)
+  end
+
+# dwin thinks
+  def self.published_articles
+    self.select do |article|
+      article.versions.where(is_published: true).any?
+    end
   end
 
   def self.recent_versions
-    Article.all.map(&:current_version)
 
+    self.published_articles.map(&:current_version)
   end
-
-  # self.all.select do |article|
-  #   article.search_words
-
-  # end
 
   def key_words
     self.title.downcase.split - COMMON_WORDS_LIST
