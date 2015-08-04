@@ -22,4 +22,19 @@ class Category < ActiveRecord::Base
     match_group = slug.match(id_matcher)
     found_id = match_group[1].to_i
   end
+
+
+  def self.parse_categories_from_string(string_of_categories)
+    #output: array of category items to associate with a given version
+    array_of_category_names = string_of_categories.split(',')
+
+    array_of_category_names.map do |category_name|
+      Category.find_or_create_by(name: category_name.strip.downcase)
+    end
+  end
+
+
+
+
+
 end

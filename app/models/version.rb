@@ -38,4 +38,6 @@ class Version < ActiveRecord::Base
   def get_newlines
     @markdown_content = @markdown_content.gsub(/\n/, "<br><br>")
   end
+
+
 end
