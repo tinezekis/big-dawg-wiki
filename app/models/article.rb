@@ -30,20 +30,27 @@ class Article < ActiveRecord::Base
 
     self.all.each do |article|
       no_match = [word] - article.search_words
-      unless no_match
+      unless no_match.any?
         return_ary << article
       end
     end
-    
+
     return_ary
   end
+
+
+
+  # self.all.select do |article|
+  #   article.search_words
+
+  # end
 
   def key_words
     self.title.downcase.split - COMMON_WORDS_LIST
   end
 
   def search_words
-    self.categories.map(&:name) + key_words
+    self.categories.map{|c| c.name.downcase } + key_words
   end
 
 

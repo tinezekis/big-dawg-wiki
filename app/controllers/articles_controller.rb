@@ -18,6 +18,8 @@ class ArticlesController < ApplicationController
   end
 
   def search
+    @articles = Article.search(params[:term])
+
     # accepts params keyword search
     # serves search results
   end

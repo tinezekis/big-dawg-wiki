@@ -2,5 +2,6 @@
   <% if current_user %>
   <li><%= link_to 'New Article', new_article_path %>
   <li><%= link_to 'Logout', :logout, method: :delete %></li>
+  <li><form id='search-bar'><input type='text'><input type='submit' value='search'></form></li>
   <% end %>
 </ul>
