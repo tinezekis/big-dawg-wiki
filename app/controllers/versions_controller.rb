@@ -39,4 +39,8 @@ class VersionsController < ApplicationController
     #save updates
   end
 
+  def show
+    @version = Version.find(params[:id])
+  end
+
 end
