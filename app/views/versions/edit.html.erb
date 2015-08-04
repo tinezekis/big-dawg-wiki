@@ -1,0 +1,13 @@
+<h1>Edit Version For <%= @version.article.title %></h1>
+  <%= form_for @version do |f| %>
+  <%= f.label :content %>
+  <%= f.text_field :content%>
+  <%= f.label :footnotes %>
+  <%= f.text_field :footnotes%>
+  <%= f.submit %>
+<% end %>
+
+<% if @version.is_published == false %>
+  <a href="/articles/<%= @version.article.to_param %>/versions/<%= @version.id %> >/publish">Publish Article</a>
+  <p>Caution: Once you publish an article, it can no longer be edited.</p>
+<% end %>

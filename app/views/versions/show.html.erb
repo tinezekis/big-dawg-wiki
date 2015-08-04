@@ -1,0 +1,36 @@
+<div class="container">
+  <div id="sidebar">
+    <h3>Contents</h3>
+    <ul>
+      <% section_num = 0 %>
+      <% @sections.each do |section| %>
+        <li><a href="#<%= section_num %>"><%= section %></a></li>
+        <% section_num += 1 %>
+      <% end %>
+    </ul>
+  </div>
+  <div id="show-article">
+    <h1><%= @version.article.title %></h1>
+    <h3>Written by <%= @version.article.orig_author.username %></h3>
+    <% if @version.article.orig_author != @version.updating_author %>
+    <h5>Edited by <%= @version.updating_author.username %></h5>
+    <% end %>
+    <%= @markdown_content.html_safe %>
+    <% if @version.footnotes %>
+      <h5>Footnotes</h5>
+      <p><%= @version.footnotes %></p>
+    <% end %>
+    <% if @version.article.versions.length > 1 %>
+    <h5>See All Versions of This Article</h5>
+    <ul>
+      <% @version.article.versions.each do |version| %>
+        <li><a href="articles/<%= version.article.to_param %>/version/<%= version.id %>">version id: <%= version.id %> (updated by <%= version.updating_author.username %>)</a></li>
+      <% end %>
+    </ul>
+    <% end %>
+  </div>
+</div>
+
+<% if @version.is_published == false %>
+  <a href="/articles/<%= @version.article.to_param %>/versions/<%= @version.id %>/edit">Edit / Publish Article </a>
+<% end %>
