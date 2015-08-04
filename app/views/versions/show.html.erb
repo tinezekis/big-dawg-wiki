@@ -2,8 +2,10 @@
   <div id="sidebar">
     <h3>Contents</h3>
     <ul>
+      <% section_num = 0 %>
       <% @sections.each do |section| %>
-        <li><%= section %></li>
+        <li><a href="#<%= section_num %>"><%= section %></a></li>
+        <% section_num += 1 %>
       <% end %>
     </ul>
   </div>
