@@ -9,6 +9,7 @@ class Category < ActiveRecord::Base
 
   def set_slug
     self.slug = self.name.downcase.split.join("-") + "-" + self.id.to_s
+    self.save
   end
 
 
@@ -16,6 +17,9 @@ class Category < ActiveRecord::Base
     self.slug
   end
 
-
-
+  def self.match_id(slug)
+    id_matcher = /\-([0-9]+)\z/
+    match_group = slug.match(id_matcher)
+    found_id = match_group[1].to_i
+  end
 end
