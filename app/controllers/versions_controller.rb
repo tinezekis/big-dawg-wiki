@@ -33,12 +33,12 @@ class VersionsController < ApplicationController
 
   def edit
     @version = Version.find(params[:id])
-
-    if @version.is_published == true
+    if @version.updating_author == current_user || @version.is_published == true || current_user.permission_level == 'big_dawg'
       redirect_to "/articles/#{@version.article.to_param}/versions/#{@version.id}"
     else
       render :"versions/edit"
     end
+
   end
 
   def update
