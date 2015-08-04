@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    p "MADE IT TO THE CREATE"
+
     if current_user
       @article = Article.new({title:params[:article][:title],orig_author_id:current_user.id})
       if @article.save

@@ -3,7 +3,8 @@ class VersionsController < ApplicationController
   def new
     if current_user
       @version = Version.new
-      @article = Article.find_by slug: params[:article_title]
+      slug = params[:article_title]
+      @article = Article.find(Article.match_id(slug))
       @version.article = @article
   else
     redirect_to "/"
@@ -14,7 +15,10 @@ class VersionsController < ApplicationController
     if current_user
       @version = Version.new(content: params[:version][:content], footnotes: params[:version][:footnotes])
       @version.updating_author = current_user
-      @version.article = Article.find_by slug: params[:aritcle_title]
+      slug = params[:article_title]
+      @article = Article.find(Article.match_id(slug))
+      @version.article = @article
+
       if @version.save
         redirect_to "/"
         # USE ROUTE BELOW ONCE SHOW_RECENT TEMPLATE IS CREATED
