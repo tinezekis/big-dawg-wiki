@@ -1,5 +1,6 @@
 User.destroy_all if User.any?
 
+bd = User.create!(username: 'bigdawg', password: 'password', permission_level: 'big_dawg')
 u1 = User.create!(username: 'user1', password: 'password', permission_level: 'author')
 u2 = User.create!(username: 'user2', password: 'password', permission_level: 'author')
 

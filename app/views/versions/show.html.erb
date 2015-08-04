@@ -21,6 +21,22 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col s6 offset-s3">
+    <% if current_user == @version.article.orig_author || current_user.permission_level == "big_dawg" %>
+      <%= link_to 'Edit / Delete', new_version_path %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s6 offset-s3">
+    <% if @version.footnotes == nil || @version.footnotes == '' %>
+    <p id="footnote-warning">Warning: The article you are viewing does not have any footnote citations. The content may not be accurate</p>
+    <% end %>
+  </div>
+</div>
+
 <div class="divider"></div>
 <div class="section">
   <%= @markdown_content.html_safe %>
@@ -29,6 +45,8 @@
   <% if @version.footnotes %>
     <div class="divider"></div>
     <div class="section">
+
+
       <h5>Footnotes</h5>
       <p><%= @version.footnotes %></p>
     </div>
