@@ -1,0 +1,28 @@
+Can link to another article or category within the text of an article (recognize key words or whole titles within content); this should happen on back end and not at the user interface
+
+*** Or categories can come first (before key words within content)
+
+Category name uniqueness
+
+Images (automatic even if no one adds one), bid dawg default
+
+*** Ajax for create new version form to show up
+*** To create a new version, the old content should already be there
+
+How do you hit enter in the textarea for content?
+
+Still need instructions for markdown
+
+*** Big dawg user is a priority
+** dawg becomes Dawg when you're a big dawg
+** maybe a paw print
+* view all users; make user into a big dawg
+
+Add bold and italics to markdown
+
+Color from purple to light brown or another color green (hover color change or shadow), but stay same color after visit
+
+Underline links
+
+Edit/Delete blue stays blue whether you've clicked it or not
+
