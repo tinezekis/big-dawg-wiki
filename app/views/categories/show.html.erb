@@ -1,0 +1,5 @@
+<h1>Articles by category</h1>
+<h2><%= @category.name %></h2>
+<% @category.versions.each do |version| %>
+<h3><%= link_to version.article.title, show_recent_path(version.article.slug) %></h3>
+<% end %>

@@ -6,25 +6,27 @@ Rails.application.routes.draw do
 
 
 
-  #shows most recent version of article, shows 'top 10' articles on article index
-  get 'articles/:article_name' => 'article#show_recent'
-  get 'articles/you_should_read' => 'article#index'
+  #shows most recent version of article
+  get 'articles/:article_title' => 'articles#show_recent', as: :show_recent
+
+  #shows 'top 10' articles on article index
+  get 'articles/you_should_read' => 'articles#index'
 
   #creates a new version for the given article
-  get 'articles/:article_title/new_version' => 'version#new'
-  post 'articles/:article_title' => 'version#create'
+  get 'articles/:article_title/new_version' => 'versions#new'
+  post 'articles/:article_title' => 'versions#create'
 
   #allows you to edit a version that has not been published (if published, encourage them to write a new version),
-  get 'articles/:article_title/versions/:id/edit' => 'version#edit'
-  put 'articles/:article_title/versions/:id' =>'version#update'
+  get 'articles/:article_title/versions/:id/edit' => 'versions#edit'
+  put 'articles/:article_title/versions/:id' =>'versions#update'
 
   #create a new article
-  get 'articles/new' => 'article#new'
-  post 'articles' => 'article#create'
+  get 'articles/new' => 'articles#new'
+  post 'articles' => 'articles#create'
 
   #show the category index, show all articles associated with a given category
-  get 'categories/index' => 'category#index'
-  get 'categories/:category_name' => 'category#show'
+  get 'categories' => 'categories#index'
+  get 'categories/:category_name' => 'categories#show', as: :category_name
 
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
