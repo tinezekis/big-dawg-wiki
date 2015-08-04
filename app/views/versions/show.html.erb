@@ -61,7 +61,7 @@
     <h5>See All Versions of This Article</h5>
     <ul>
       <% @version.article.versions.each do |version| %>
-        <li><a class="purple-text" href="articles/<%= version.article.to_param %>/version/<%= version.id %>">version id: <%= version.id %> (updated by <%= version.updating_author.username %>)</a></li>
+        <li><a class="purple-text" href="/articles/<%= version.article.to_param %>/versions/<%= version.id %>">version id: <%= version.id %> (updated by <%= version.updating_author.username %>)</a></li>
       <% end %>
     </ul>
   </div>
