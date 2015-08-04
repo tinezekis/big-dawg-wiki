@@ -10,6 +10,9 @@
     </ul>
   </div>
   <div id="show-article">
+    <% if @version.footnotes == nil || @version.footnotes == '' %>
+    <p id="footnote-warning">Warning: The article you are viewing does not have any footnote citations. The content may not be accurate</p>
+    <% end %>
     <h1><%= @version.article.title %></h1>
     <h3>Written by <%= @version.article.orig_author.username %></h3>
     <% if @version.article.orig_author != @version.updating_author %>
