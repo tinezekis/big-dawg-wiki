@@ -11,6 +11,9 @@
               </div>
             </form>
           </li>
+          <% if current_user.permission_level == "big_dawg" %>
+            <li><%= link_to "All dawgs", users_path %></li>
+          <% end %>
           <li><%= current_user.username %></li>
           <li><%= link_to 'Home', '/articles/you_should_read' %></li>
           <li><%= link_to 'Create new article', new_article_path %></li>

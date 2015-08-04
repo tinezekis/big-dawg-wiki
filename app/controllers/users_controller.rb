@@ -13,10 +13,14 @@ class UsersController < ApplicationController
     end
   end
 
+
   def show
     @articles = Article.unpublished_for(self)
 
-    
+  end
+  
+  def index
+
   end
 
   private
