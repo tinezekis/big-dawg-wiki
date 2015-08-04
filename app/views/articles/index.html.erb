@@ -1,0 +1,7 @@
+<h1>Below are the Articles you should read</h1>
+<!-- There is a slight issue here. @articles is actually recent versions. -->
+<% @articles.each do |current_version| %>
+  <div>
+    <%= link_to current_version.article.title, show_recent_path(current_version.article.slug) %>
+  </div>
+<% end %>
