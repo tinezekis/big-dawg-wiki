@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   get 'categories' => 'categories#index'
   get 'categories/:category_name' => 'categories#show', as: :category_name
 
-
+  get 'users' => 'users#index', as: :users
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
