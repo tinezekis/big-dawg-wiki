@@ -1,5 +1,5 @@
 <div class="row">
-  <h1 class="white-text" ><%= @version.article.title %></h1>
+  <h1 ><%= @version.article.title %></h1>
 </div>
 
 <% if @version.is_most_recent == false %>
@@ -11,9 +11,9 @@
 
 <div class="row">
   <div class="col s6 offset-s4">
-  <h4 class="white-text">Written by <%= @version.article.orig_author.username %></h4>
+  <h4>Written by <%= @version.article.orig_author.username %></h4>
     <% if @version.article.orig_author != @version.updating_author %>
-    <h5 class="white-text">Edited by <%= @version.updating_author.username %></h5>
+    <h5>Edited by <%= @version.updating_author.username %></h5>
     <% end %>
   </div>
 
@@ -52,33 +52,32 @@
   <%= @markdown_content.html_safe %>
 </div>
 
-  <% if @version.footnotes %>
-    <div class="divider"></div>
-    <div class="section">
-
-
-      <h5>Footnotes</h5>
-      <p><%= @version.footnotes %></p>
-    </div>
-  <% end %>
-
-
-  <% if @version.article.versions.length > 1 %>
+<% if @version.footnotes %>
   <div class="divider"></div>
   <div class="section">
-    <h5>See All Versions of This Article</h5>
+
+    <h5>Footnotes</h5>
+    <p><%= @version.footnotes %></p>
+  </div>
+<% end %>
+
+
+<% if @version.article.versions.length > 1 %>
+  <div class="divider"></div>
+  <div class="section">
+   <h5>See All Versions of This Article</h5>
     <ul>
       <% @version.article.versions.each do |version| %>
         <li><a class="purple-text" href="/articles/<%= version.article.to_param %>/versions/<%= version.id %>">version id: <%= version.id %> (updated by <%= version.updating_author.username %>)</a></li>
       <% end %>
     </ul>
   </div>
+<% end %>
+
+<div class="row">
+  <a href="/articles/<%= @version.article.to_param %>/new_version" >Make a new version of this article.</a>
+
+  <% if @version.is_published == false || current_user.permission_level == 'big_dawg' %>
+    <a href="/articles/<%= @version.article.to_param %>/versions/<%= @version.id %>/edit">Edit / Publish Article </a>
   <% end %>
 </div>
-
-<p></p>
-<a href="/articles/<%= @version.article.to_param %>/new_version" >Make a new version of this article.</a>
-
-<% if @version.is_published == false || current_user.permission_level == 'big_dawg' %>
-  <a href="/articles/<%= @version.article.to_param %>/versions/<%= @version.id %>/edit">Edit / Publish Article </a>
-<% end %>
