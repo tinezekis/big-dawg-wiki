@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'articles/new' => 'articles#new', as: :new_article
   get 'articles/:article_title' => 'articles#show_recent', as: :show_recent
 
-
+  delete 'articles/:article_title' => 'articles#destroy'
 
 
   #creates a new version for the given article
