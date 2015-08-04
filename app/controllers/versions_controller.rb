@@ -6,6 +6,7 @@ class VersionsController < ApplicationController
       slug = params[:article_title]
       @article = Article.find(Article.match_id(slug))
       @version.article = @article
+
   else
     redirect_to "/"
   end
@@ -15,6 +16,7 @@ class VersionsController < ApplicationController
     if current_user
       @version = Version.new(content: params[:version][:content], footnotes: params[:version][:footnotes])
       @version.updating_author = current_user
+      @version.categories = Category.parse_categories_from_string(params[:version][:category_adder])
       slug = params[:article_title]
       @article = Article.find(Article.match_id(slug))
       @version.article = @article
