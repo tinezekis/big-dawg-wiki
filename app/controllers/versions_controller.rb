@@ -20,9 +20,7 @@ class VersionsController < ApplicationController
       @version.article = @article
 
       if @version.save
-        redirect_to "/"
-        # USE ROUTE BELOW ONCE SHOW_RECENT TEMPLATE IS CREATED
-        # redirect_to "articles/#{@article.slug}"
+        redirect_to "articles/#{@article.slug}"
       else
         @errors = @version.errors.full_messages
         render :"views/version/new"
