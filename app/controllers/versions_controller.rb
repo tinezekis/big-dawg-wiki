@@ -34,7 +34,7 @@ class VersionsController < ApplicationController
   def edit
     @version = Version.find(params[:id])
     if @version.is_published == true
-      redirect_to "/"
+      redirect_to "/articles/#{@version.article.to_param}/versions/#{@version.id}"
     else
       render :"versions/edit"
     end
