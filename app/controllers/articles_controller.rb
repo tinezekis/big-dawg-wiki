@@ -19,9 +19,8 @@ class ArticlesController < ApplicationController
 
   def search
     @articles = Article.search(params[:term])
-
-    # accepts params keyword search
-    # serves search results
+    # view not implemented yet
+    # render: index
   end
 
 
