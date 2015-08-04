@@ -15,14 +15,23 @@ class ArticlesController < ApplicationController
     else
       redirect_to "/"
     end
-    #redirect to a page where we can title the article. This will render a partial that we can move to main page if we use js
   end
 
   def create
+    if current_user
+      @article = Article.new({title:params[:article][:title],orig_author_id:current_user.id})
+      if @article.save
+        redirect_to "articles/#{@article.to_param}/new_version"
+      else
+        @errors = @article.errors.full_messages
+        render :"views/articles/new"
+      end
+    else
+      redirect_to "/"
+    end
+  end
 
 
     #save that new article you just created, redirect to new version page
   end
 
-
-end
