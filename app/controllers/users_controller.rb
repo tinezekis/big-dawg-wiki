@@ -13,6 +13,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @articles = Article.unpublished_for(self)
+
+    
+  end
+
   private
     def user_params
       params.require(:user).permit(:username, :password)
