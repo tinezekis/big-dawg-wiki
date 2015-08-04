@@ -1,8 +1,9 @@
 <h1>New Version For <%= @version.article.title %></h1>
-  <%= form_for @version do |f| %>
-  <%= f.label :content %>
-  <%= f.text_field :content%>
-  <%= f.label :footnotes %>
-  <%= f.text_field :footnotes%>
-  <%= f.submit %>
+
+<%= form_for @version do |f| %>
+	<%= f.label :content %>
+	<%= f.text_field :content%>
+	<%= f.label :footnotes %>
+	<%= f.text_field :footnotes%>
+	<%= f.submit %>
 <% end %>
