@@ -1,5 +1,12 @@
-<h1>Articles by category</h1>
-<h2><%= @category.name %></h2>
+<div class="row">
+	<div class="col s8 offset-s2">
+		<h1>Articles by Category: <%= @category.name %></h1>
+	</div>
+</div>
+
 <% @category.versions.each do |version| %>
-<h3><%= link_to version.article.title, show_recent_path(version.article.slug) %></h3>
+<div class="divider"></div>
+	<div class="section deep-purple darken-2">
+		<h4><%= link_to version.article.title, show_recent_path(version.article.slug), class: "index_li white-text" %></h4>
+	</div>
 <% end %>
