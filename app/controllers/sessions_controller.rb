@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    redirect_to '/articles/you_should_read' if current_user
     @user = User.new
   end
 
