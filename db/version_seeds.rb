@@ -10,6 +10,7 @@ def generate_content
   5.times do
     content << ("\#" + Faker::Company.name + "\n" + Faker::Lorem.paragraph + "\n" + Faker::Lorem.paragraph + "\n")
   end
+  content
 end
 
 
