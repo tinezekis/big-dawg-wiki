@@ -33,6 +33,7 @@ class VersionsController < ApplicationController
 
   def edit
     @version = Version.find(params[:id])
+
     if @version.is_published == true
       redirect_to "/articles/#{@version.article.to_param}/versions/#{@version.id}"
     else
@@ -42,7 +43,7 @@ class VersionsController < ApplicationController
 
   def update
     @version = Version.find(params[:id])
-    @version = Version.update(content: params[:version][:content], footnotes: params[:version][:footnotes])
+    @version.update(content: params[:version][:content], footnotes: params[:version][:footnotes])
     redirect_to "/articles/#{@version.article.to_param}/versions/#{@version.id}"
   end
 
@@ -59,6 +60,7 @@ class VersionsController < ApplicationController
       version.is_most_recent = false
     end
     @version.is_most_recent = true
+    @version.save
     redirect_to "/articles/#{@version.article.to_param}"
   end
 

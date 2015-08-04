@@ -41,7 +41,7 @@ class Article < ActiveRecord::Base
   end
 
   def current_version
-    self.versions.find_by(is_most_recent: false) #true)
+    self.versions.find_by(is_most_recent: true)
   end
 
   def self.recent_versions
