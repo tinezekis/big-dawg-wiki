@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   #shows 'top 10' articles on article index
   get 'articles/you_should_read' => 'articles#index'
   #shows most recent version of A SINGLE article
+
+  get 'articles/new' => 'articles#new', as: :new_article
   get 'articles/:article_title' => 'articles#show_recent', as: :show_recent
 
 
@@ -25,10 +27,13 @@ Rails.application.routes.draw do
 
   #allows you to edit a version that has not been published (if published, encourage them to write a new version),
   get 'articles/:article_title/versions/:id/edit' => 'versions#edit'
-  put 'articles/:article_title/versions/:id' =>'versions#update'
+  put 'articles/:article_title/versions/:id' =>'versions#update', as: :version
+
+  get 'articles/:article_title/versions/:id' => 'versions#show'
+  get 'articles/:article_title/versions/:id/publish' => 'versions#publish'
 
   #create a new article
-  get 'articles/new' => 'articles#new'
+
   post 'articles' => 'articles#create'
 
   #show the category index, show all articles associated with a given category

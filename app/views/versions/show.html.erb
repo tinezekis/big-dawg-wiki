@@ -28,3 +28,7 @@
     <% end %>
   </div>
 </div>
+
+<% if @version.is_published == false %>
+  <a href="/articles/<%= @version.article.to_param %>/versions/<%= @version.id %>/edit">Edit / Publish Article </a>
+<% end %>

@@ -20,10 +20,10 @@ class VersionsController < ApplicationController
       @version.article = @article
 
       if @version.save
-        redirect_to "articles/#{@article.slug}"
+        redirect_to "/articles/#{@version.article.to_param}/versions/#{@version.id}"
       else
         @errors = @version.errors.full_messages
-        render :"views/version/new"
+        render :"views/versions/new"
       end
 
     else
@@ -32,15 +32,34 @@ class VersionsController < ApplicationController
   end
 
   def edit
-    #same as new version form but pre-populated
+    @version = Version.find(params[:id])
+    if @version.is_published == true
+      redirect_to "/articles/#{@version.article.to_param}/versions/#{@version.id}"
+    else
+      render :"versions/edit"
+    end
   end
 
   def update
-    #save updates
+    @version = Version.find(params[:id])
+    @version = Version.update(content: params[:version][:content], footnotes: params[:version][:footnotes])
+    redirect_to "/articles/#{@version.article.to_param}/versions/#{@version.id}"
   end
 
   def show
     @version = Version.find(params[:id])
+    @sections = @version.get_sections
+    @markdown_content = @version.generate_markdown
+  end
+
+  def publish
+    @version = Version.find(params[:id])
+    @version.is_published = true
+    @version.article.versions.each do |version|
+      version.is_most_recent = false
+    end
+    @version.is_most_recent = true
+    redirect_to "/articles/#{@version.article.to_param}"
   end
 
 end
