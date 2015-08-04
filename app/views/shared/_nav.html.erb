@@ -1,16 +1,17 @@
-<ul>
+<nav>
   <% if current_user %>
-  <li><%= link_to 'New Article', new_article_path %></li>
-  <li><%= link_to 'Logout', :logout, method: :delete %></li>
-  <li>
+  <span><%= current_user.username %> </span> |
+  <span><%= link_to 'Create new article', new_article_path %></span> |
+  <span><%= link_to 'Logout', :logout, method: :delete %></span> |
+  <span>
     <form id='search-bar' action="/articles/search" method='get'>
       <input type='text' name='term'>
       <input type='submit' value='search'>
     </form>
-  </li>
+  </span>
 
   <% else %>
-  <li>Login or sign up Below!</li>
+  <span>Login or sign up Below!</span>
 
   <% end %>
-</ul>
+</nav>
