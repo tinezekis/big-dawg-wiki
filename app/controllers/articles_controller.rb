@@ -57,11 +57,8 @@ class ArticlesController < ApplicationController
     @article.versions.each do |version|
       version.destroy
     end
-    if @article.destroy
-      redirect_to 'articles/you_should_read'
-    else
-      render :"articles/#{@article.to_param}"
-    end
+    @article.destroy
+    redirect_to 'articles/you_should_read'
   end
 
 end
