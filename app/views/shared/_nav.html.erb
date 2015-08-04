@@ -1,6 +1,7 @@
 <nav>
   <% if current_user %>
   <span><%= current_user.username %> </span> |
+  <span><%= link_to 'Home', '/articles/you_should_read' %></span> |
   <span><%= link_to 'Create new article', new_article_path %></span> |
   <span><%= link_to 'Logout', :logout, method: :delete %></span> |
   <span>
