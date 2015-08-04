@@ -66,6 +66,9 @@
   <% end %>
 </div>
 
+<p></p>
+<a href="/articles/<%= @version.article.to_param %>/new_version" >Make a new version of this article.</a>
+
 <% if @version.is_published == false || current_user.permission_level == 'big_dawg' %>
   <a href="/articles/<%= @version.article.to_param %>/versions/<%= @version.id %>/edit">Edit / Publish Article </a>
 <% end %>
