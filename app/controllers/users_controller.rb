@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      login(@user) #fix sign-up
       redirect_to articles_you_should_read_path
     else
       render 'new'

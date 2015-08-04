@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
 
   def index
     #this should show the ten longest (order by content.length DESC limit 10) most recent versions on an index page
+    redirect_to root_path if !current_user
     @recent_versions = Article.recent_versions
     ## refactor later
     p @recent_versions
