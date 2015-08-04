@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # 'articles/search?term=xyz'
   #shows 'top 10' articles on article index
   get 'articles/you_should_read' => 'articles#index'
-  #shows most recent version of article
+  #shows most recent version of A SINGLE article
   get 'articles/:article_title' => 'articles#show_recent', as: :show_recent
 
 
