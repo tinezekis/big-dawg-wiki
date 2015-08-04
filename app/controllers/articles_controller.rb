@@ -18,10 +18,11 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    p "MADE IT TO THE CREATE"
     if current_user
       @article = Article.new({title:params[:article][:title],orig_author_id:current_user.id})
       if @article.save
-        redirect_to "articles/#{@article.to_param}/new_version"
+        redirect_to "/articles/#{@article.to_param}/new_version"
       else
         @errors = @article.errors.full_messages
         render :"views/articles/new"

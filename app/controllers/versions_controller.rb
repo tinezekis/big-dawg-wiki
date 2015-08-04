@@ -12,11 +12,11 @@ class VersionsController < ApplicationController
 
   def create
     if current_user
-      @version.new(content: params[:version][:content], footnotes: params[:version][:footnotes])
+      @version = Version.new(content: params[:version][:content], footnotes: params[:version][:footnotes])
       @version.updating_author = current_user
       @version.article = Article.find_by slug: params[:aritcle_title]
       if @version.save
-        redirect_To "/"
+        redirect_to "/"
         # USE ROUTE BELOW ONCE SHOW_RECENT TEMPLATE IS CREATED
         # redirect_to "articles/#{@article.slug}"
       else

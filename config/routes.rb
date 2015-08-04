@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   #creates a new version for the given article
   get 'articles/:article_title/new_version' => 'versions#new'
 
-  post 'articles/:article_title' => 'versions#create'
+  post 'articles/:article_title' => 'versions#create', as: :versions
 
   #allows you to edit a version that has not been published (if published, encourage them to write a new version),
   get 'articles/:article_title/versions/:id/edit' => 'versions#edit'
