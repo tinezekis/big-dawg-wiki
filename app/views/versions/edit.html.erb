@@ -6,8 +6,10 @@
   <%= f.text_field :footnotes%>
   <%= f.submit %>
 <% end %>
+<%= link_to 'Delete Article', delete_article_path %>
+<p>Caution: Once you delete an article, all versions will be permanently removed from the website.</p>
 
 <% if @version.is_published == false %>
   <a href="/articles/<%= @version.article.to_param %>/versions/<%= @version.id %> >/publish">Publish Article</a>
-  <p>Caution: Once you publish an article, it can no longer be edited.</p>
+  <p>Caution: Once you publish an article, the current version can no longer be edited.</p>
 <% end %>
