@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
         redirect_to "/articles/#{@article.to_param}/new_version"
       else
         @errors = @article.errors.full_messages
-        render :"views/articles/new"
+        render :"articles/new"
       end
     else
       redirect_to "/"

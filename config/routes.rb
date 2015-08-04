@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   get 'articles/:article_title/versions/:id/edit' => 'versions#edit'
   put 'articles/:article_title/versions/:id' =>'versions#update'
 
+  get 'articles/:article_title/versions/:id' => 'version#show'
+
+
   #create a new article
   get 'articles/new' => 'articles#new'
   post 'articles' => 'articles#create'
