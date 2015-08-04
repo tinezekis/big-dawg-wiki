@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:sessions][:username])
     if @user && @user.authenticate(params[:sessions][:password])
       login(@user)
-      redirect_to articles_path
+      redirect_to articles_you_should_read_path
     else
       # flash.now[:notice] = 'Invalid Email/password combination'
       @errors = 'Invalid email/password combination'

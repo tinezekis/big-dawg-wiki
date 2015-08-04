@@ -5,8 +5,8 @@ class CreateVersions < ActiveRecord::Migration
       t.integer :article_id
       t.text :content
       t.text :footnotes
-      t.boolean :is_most_recent
-      t.boolean :is_published
+      t.boolean :is_most_recent, default: false
+      t.boolean :is_published, default: false
 
       t.timestamps null: false
     end
