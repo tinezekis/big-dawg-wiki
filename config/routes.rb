@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   #shows most recent version of article, shows 'top 10' articles on article index
   get 'articles/:article_name' => 'article#show_recent'
   get 'articles/you_should_read' => 'article#index'
+  get 'articles/search' => 'article#search'
+  # 'articles/search?term=xyz'
 
   #creates a new version for the given article
   get 'articles/:article_title/new_version' => 'version#new'
@@ -24,6 +26,7 @@ Rails.application.routes.draw do
 
   #show the category index, show all articles associated with a given category
   get 'categories/index' => 'category#index'
+
   get 'categories/:category_name' => 'category#show'
 
   get 'signup' => 'users#new'

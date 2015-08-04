@@ -17,5 +17,10 @@ class ArticlesController < ApplicationController
     #save that new article you just created, redirect to new version page
   end
 
+  def search
+    # accepts params keyword search
+    # serves search results
+  end
+
 
 end

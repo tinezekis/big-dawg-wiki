@@ -8,5 +8,4 @@ class CategoriesController < ApplicationController
     #show all articles(most recent versions) associated with a given category
   end
 
-
 end
