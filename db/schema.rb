@@ -51,10 +51,10 @@ ActiveRecord::Schema.define(version: 20150803162555) do
     t.integer  "article_id"
     t.text     "content"
     t.text     "footnotes"
-    t.boolean  "is_most_recent"
-    t.boolean  "is_published"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.boolean  "is_most_recent",     default: false
+    t.boolean  "is_published",       default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
 end
