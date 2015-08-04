@@ -12,12 +12,11 @@ describe SessionsController do
 
   describe "POST create" do
     context "where valid params are passed" do
-      subject { post :create, :user => { username: "Ben", password: "helloo"} }
+      subject { post :create, :sessions => { username: "Bob", password: "password"} }
 
       it "creates a session[:user_id]" do
         subject
-        login(:user)
-        expect(session[:user_id]).to eq(:user.id)
+        expect(session[:user_id]).to eq(user.id)
       end
 
       xit "redirects to the articles index page" do
@@ -25,15 +24,27 @@ describe SessionsController do
     end
 
     context "where invalid params are passed" do
-      subject { post :create, :user => {username: "Christine", password: ""} }
+      subject { post :create, :sessions => {username: "Bob", password: ""} }
 
-      it "assigns a newly created but unsaved user as @user" do
-        expect{subject}.to_not change(User, :count)
-        expect(assigns(:user)).not_to eq(User.last)
+      it "assigns a a new error as @errors" do
+        subject
+        expect(assigns(:errors)).to be_truthy
       end
 
       it "re-renders the 'new' template" do
+        subject
         expect(subject).to render_template(:new)
+      end
+    end
+  end
+
+  describe "DESTROY" do
+    context "when person hits log out" do
+      subject { delete :destroy, sessions: { username: "Bob", password: "password"}}
+
+      it "will make session[:user_id] nil" do
+        subject
+        expect(session[:user_id]).to eq(nil)
       end
     end
   end
