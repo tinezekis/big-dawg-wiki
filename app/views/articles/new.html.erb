@@ -1,0 +1,8 @@
+<h1>Create A New Article</h1>
+<p>Please consider the title carefully. Once it is saved, it cannot be edited.</p>
+
+<%= form_for @article do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.submit %>
+<% end %>
