@@ -12,6 +12,7 @@
   <div id="show-article">
     <% if @version.footnotes == nil || @version.footnotes == '' %>
     <p id="footnote-warning">Warning: The article you are viewing does not have any footnote citations. The content may not be accurate</p>
+    <% end %>
     <% if current_user == @version.article.orig_author || current_user.permission_level == "big_dawg" %>
       <%= link_to 'Edit / Delete', new_version_path %>
     <% end %>
