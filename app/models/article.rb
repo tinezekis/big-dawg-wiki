@@ -44,7 +44,7 @@ class Article < ActiveRecord::Base
     self.versions.find_by(is_most_recent: false) #true)
   end
 
-  def self.recent_articles
+  def self.recent_versions
     Article.all.map(&:current_version)
 
   end
