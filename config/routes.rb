@@ -6,8 +6,6 @@ Rails.application.routes.draw do
 
 
 
-
-
   get 'articles/search' => 'articles#search'  # works from a non-article page
   # get 'articles/articles/search' => 'articles#search'  # works from an article page
   # 'articles/search?term=xyz'
@@ -18,11 +16,11 @@ Rails.application.routes.draw do
   get 'articles/new' => 'articles#new', as: :new_article
   get 'articles/:article_title' => 'articles#show_recent', as: :show_recent
 
-
+  delete 'articles/:article_title' => 'articles#destroy', as: :delete_article
 
 
   #creates a new version for the given article
-  get 'articles/:article_title/new_version' => 'versions#new'
+  get 'articles/:article_title/new_version' => 'versions#new', as: :new_version
 
   post 'articles/:article_title' => 'versions#create', as: :versions
 
