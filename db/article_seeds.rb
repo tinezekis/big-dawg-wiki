@@ -19,6 +19,12 @@ poodle01 = Version.create!(updating_author_id: users.sample.id,
                             is_most_recent: false,
                             is_published: false)
 
+sectioned_article = Article.create!(title: "This Article Has Sections", orig_author: users.sample)
+
+sectioned_article_version_1 = Version.create!(article: sectioned_article, updating_author: sectioned_article.orig_author, content: "This is the first version of the article.\nIt's not much to look at.", is_most_recent: false, is_published: true)
+
+sectioned_article_version_2 = Version.create!(article: sectioned_article, updating_author: users.sample, content: "#First Section\nHere's a paragraph about some stuff.\n#Another Section\nHere's another paragraph.\n#Section the Last\nHere's more content.\nAnd here's a final paragraph.", footnotes: "I got this information somewhere", is_most_recent: true, is_published: true)
+
 Categorization.create!(category: dogs,
                         version: poodle01)
 
