@@ -1,5 +1,7 @@
 class Category < ActiveRecord::Base
 
+  validates :name, uniqueness: true
+
   after_create :set_slug
 
   has_many :categorizations
