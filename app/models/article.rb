@@ -10,11 +10,6 @@ class Article < ActiveRecord::Base
   has_many :categorizations, through: :versions
   has_many :categories, through: :categorizations
 
-
-
-
-
-
   def to_param
     self.slug
   end
@@ -45,7 +40,14 @@ class Article < ActiveRecord::Base
     return_ary
   end
 
+  def current_version
+    self.versions.find_by(is_most_recent: false) #true)
+  end
 
+  def self.recent_articles
+    Article.all.map(&:current_version)
+
+  end
 
   # self.all.select do |article|
   #   article.search_words

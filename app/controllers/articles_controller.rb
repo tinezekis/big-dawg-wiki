@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
-
+    @articles = Article.order("content desc").limit(10)
     #this should show the ten longest (order by content.length DESC limit 10) most recent versions on an index page
   end
 
