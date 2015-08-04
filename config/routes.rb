@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   put 'articles/:article_title/versions/:id' =>'versions#update'
 
   get 'articles/:article_title/versions/:id' => 'version#show'
-
+  get 'articles/:article_title/versions/:id/publish' => 'version#publish'
 
   #create a new article
   get 'articles/new' => 'articles#new'
