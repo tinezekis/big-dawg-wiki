@@ -1,7 +1,14 @@
-<h1>Below are the Articles you should read</h1>
+<div class="row">
+	<div class="col s7 offset-s3">
+		<h1 class="white-text">Below are the Articles you should read</h1>
+	</div>
+</div>
+
 <!-- There is a slight issue here. @articles is actually recent versions. -->
 <% @articles.each do |current_version| %>
-  <div>
-    <%= link_to current_version.article.title, show_recent_path(current_version.article.slug) %>
-  </div>
+	<div class="divider"></div>
+		<div class="section deep-purple darken-2">
+	    <h3><%= link_to current_version.article.title,  show_recent_path(current_version.article.slug), class: "index_li white-text" %></h3>
+	    <p class="index_li white-text">Sample Text</p>
+		</div>
 <% end %>
