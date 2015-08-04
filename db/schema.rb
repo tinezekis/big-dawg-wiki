@@ -39,22 +39,23 @@ ActiveRecord::Schema.define(version: 20150803162555) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "permission_level"
+    t.string   "permission_level", default: "author"
     t.string   "username"
     t.string   "password_digest"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "versions", force: :cascade do |t|
     t.integer  "updating_author_id"
     t.integer  "article_id"
     t.text     "content"
+    t.text     "markdown_content"
     t.text     "footnotes"
-    t.boolean  "is_most_recent"
-    t.boolean  "is_published"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.boolean  "is_most_recent",     default: false
+    t.boolean  "is_published",       default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
 end
