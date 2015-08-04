@@ -6,13 +6,13 @@
           <li>
             <form id='search-bar' action="/articles/search" method='get'>
               <div class="input-field">
-                <input id="search" type="search" required>
+                <input id="search" name="term" type="text" required>
                 <label for="search"><i class="material-icons">search</i></label>
-                <i class="material-icons">close</i>
               </div>
             </form>
           </li>
           <li><%= current_user.username %></li>
+          <li><%= link_to 'Home', '/articles/you_should_read' %></li>
           <li><%= link_to 'Create new article', new_article_path %></li>
           <li><%= link_to 'Logout', :logout, method: :delete %></li>
       <% else %>
@@ -22,3 +22,4 @@
     </div>
   </nav>
 </div>
+
