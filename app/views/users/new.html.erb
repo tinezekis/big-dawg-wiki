@@ -1,47 +1,44 @@
-<div class="card-panel green darken-2 z-depth-1">
+<div class="row">
+  <div class="col s6 offset-s3">
+    <h1>Sign up!</h1>
+  </div>
+</div>
 
+<% if @user.errors.any? %>
   <div class="row">
     <div class="col s6 offset-s3">
-      <h1>Sign up!</h1>
+      <h2><%= pluralize(@user.errors.count, "error") %> prevented this user from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
+<% end %>
 
-  <% if @user.errors.any? %>
+<div class="row">
+  <%= form_for @user, :html => {class: "col s6 offset-s3"} do |f| %>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :username, placeholder: "Username" %>
+        <%= f.label :username %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.password_field :password, placeholder: "Password at least 6 characters long" %>
+        <%= f.label :password %>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col s6 offset-s3">
-        <h2><%= pluralize(@user.errors.count, "error") %> prevented this user from being saved:</h2>
-        <ul>
-          <% @user.errors.full_messages.each do |error| %>
-            <li><%= error %></li>
-          <% end %>
-        </ul>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+           <i class="material-icons">send</i>
+         </button>
       </div>
     </div>
   <% end %>
-
-  <div class="row">
-    <%= form_for @user, html: {class: "col s6 offset-s3"} do |f| %>
-      <div class="row">
-        <div class="input-field col s12">
-          <%= f.text_field :username, placeholder: "Username" %>
-          <%= f.label :username %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <%= f.password_field :password, placeholder: "Password at least 6 characters long" %>
-          <%= f.label :password %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col s6 offset-s3">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-             <i class="material-icons">send</i>
-           </button>
-        </div>
-      </div>
-    <% end %>
-  </div>
 </div>
