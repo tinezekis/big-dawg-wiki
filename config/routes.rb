@@ -8,11 +8,15 @@ Rails.application.routes.draw do
 
 
 
+  get 'articles/search' => 'article#search'
+  # 'articles/search?term=xyz'
+  #shows 'top 10' articles on article index
+  get 'articles/you_should_read' => 'articles#index'
   #shows most recent version of article
   get 'articles/:article_title' => 'articles#show_recent', as: :show_recent
 
-  #shows 'top 10' articles on article index
-  get 'articles/you_should_read' => 'articles#index'
+
+
 
   #creates a new version for the given article
   get 'articles/:article_title/new_version' => 'versions#new'

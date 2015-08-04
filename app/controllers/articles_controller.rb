@@ -32,7 +32,12 @@ class ArticlesController < ApplicationController
     end
   end
 
-
-    #save that new article you just created, redirect to new version page
+  def search
+    @articles = Article.search(params[:term])
+    # view not implemented yet
+    # render: index
   end
 
+
+
+end
