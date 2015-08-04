@@ -10,10 +10,17 @@ class ArticlesController < ApplicationController
   end
 
   def new
+    if current_user
+      @article = Article.new
+    else
+      redirect_to "/"
+    end
     #redirect to a page where we can title the article. This will render a partial that we can move to main page if we use js
   end
 
   def create
+
+
     #save that new article you just created, redirect to new version page
   end
 

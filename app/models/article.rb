@@ -16,4 +16,7 @@ class Article < ActiveRecord::Base
     self.slug = self.title.downcase.split.join("-") + "-" + self.id.to_s
   end
 
+  def article_params
+    params
+  end
 end
