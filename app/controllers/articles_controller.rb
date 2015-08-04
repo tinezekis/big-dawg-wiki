@@ -22,6 +22,7 @@ class ArticlesController < ApplicationController
   def new
     if current_user
       @article = Article.new
+      render :"articles/new"
     else
       redirect_to "/"
     end
@@ -35,7 +36,7 @@ class ArticlesController < ApplicationController
         redirect_to "/articles/#{@article.to_param}/new_version"
       else
         @errors = @article.errors.full_messages
-        render :"views/articles/new"
+        render :"articles/new"
       end
     else
       redirect_to "/"
@@ -44,6 +45,7 @@ class ArticlesController < ApplicationController
 
   def search
     @articles = Article.search(params[:term])
+    render :index
     # view not implemented yet
     # render: index
   end
