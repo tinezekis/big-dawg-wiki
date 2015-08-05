@@ -13,7 +13,7 @@
 </div>
 
 <div class="row">
-	<form class="col s7 offset-s2" id="create-entry-form" action="/articles/<%= @version.article.to_param %>" method="POST">
+	<form class="col l6 s6" id="create-entry-form" action="/articles/<%= @version.article.to_param %>" method="POST">
 	  <textarea name="version[content]" rows="1000" cols="50" placeholder="Enter Content"></textarea>
 	  <input type="text" name="version[footnotes]" placeholder="Enter Footnotes">
 	  <input type="text" name="categories" placeholder="Categories (separate by commas)">
@@ -21,4 +21,5 @@
 	     <i class="material-icons">send</i>
 	   </button>
 	</form>
+	<div class="col l5 s6">Preview</div>
 </div>
