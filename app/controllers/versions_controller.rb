@@ -13,7 +13,7 @@ class VersionsController < ApplicationController
   end
 
   def create
-    if current_user
+    # if current_user
       @version = Version.new(content: params[:version][:content], footnotes: params[:version][:footnotes])
       @version.updating_author = current_user
       @version.categories = Category.parse_categories_from_string(params[:categories])
@@ -28,9 +28,9 @@ class VersionsController < ApplicationController
         render :"views/versions/new"
       end
 
-    else
-      redirect_to "/"
-    end
+    # else
+    #   redirect_to "/"
+    # end
   end
 
   def edit

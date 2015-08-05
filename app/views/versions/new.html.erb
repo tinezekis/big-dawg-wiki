@@ -1,7 +1,11 @@
 <h1>New Version For <%= @version.article.title %></h1>
 
 <form id="create-entry-form" action="/articles/<%= @version.article.to_param %>" method="POST">
-  <textarea name="version[content]" row="5" cols="50" placeholder="Enter Content"></textarea> <br />
+
+	<input name="authenticity_token" type="hidden" value="token_value">
+
+
+  <textarea name="version[content]" row="20" cols="50" placeholder="Enter Content"></textarea> <br />
   <input type="text" name="version[footnotes]" placeholder="Enter Footnotes"> <br />
   <input type="text" name="categories" placeholder="Categories (separate by commas)"> <br />
   <input type="submit" value="Submit">

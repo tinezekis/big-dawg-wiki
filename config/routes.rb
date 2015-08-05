@@ -1,100 +1,122 @@
-Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-  root 'sessions#new'
-  resources :users, only: [:new, :create, :show, :index]
+                        Rails.application.routes.draw do
+                          # The priority is based upon order of creation: first created -> highest priority.
+                          # See how all your routes lay out with "rake routes".
+                          root 'sessions#new'
+                          resources :users, only: [:new, :create, :show, :index]
 
 
 
-  get 'articles/search' => 'articles#search'  # works from a non-article page
-  # get 'articles/articles/search' => 'articles#search'  # works from an article page
-  # 'articles/search?term=xyz'
-  #shows 'top 10' articles on article index
-  get 'articles/you_should_read' => 'articles#index'
-  #shows most recent version of A SINGLE article
+# needed routes are
+  # - get-index_articles (index of multiple articles)
 
-  get 'articles/new' => 'articles#new', as: :new_article
-  get 'articles/:article_title' => 'articles#show_recent', as: :show_recent
+  # - get-show_articles (article show where version (ie content) = current_version & published)
+  # - get-articles-version-history (index of versions for articles)
+  # - get-articles-historical-id (show where version = id)
 
-  delete 'articles/:article_title' => 'articles#destroy', as: :delete_article
+  # - get-new_version (create and "published edit" a version)
+  # - post-version (create and "published edit")
+  
+  # - get-edit_version (unpublished edit)
+  # - patch-unpublish_version (as it says)
 
+  # - patch-publish_article (update article to published)
 
-  #creates a new version for the given article
-  get 'articles/:article_title/new_version' => 'versions#new', as: :new_version
-
-  post 'articles/:article_title' => 'versions#create', as: :versions
-
-  #allows you to edit a version that has not been published (if published, encourage them to write a new version),
-  post 'articles/:article_title/versions/:id' =>'versions#update', as: :version
-  get 'articles/:article_title/versions/:id/edit' => 'versions#edit'
+  ## this really makes me want to move is_published off of version and onto article...  probably too late at this point
 
 
-  get 'articles/:article_title/versions/:id' => 'versions#show'
-  get 'articles/:article_title/versions/:id/publish' => 'versions#publish'
+# so what is the next step, seed data exists, so we can view the 
 
-  #create a new article
 
-  post 'articles' => 'articles#create'
 
-  #show the category index, show all articles associated with a given category
+                          get 'articles/search' => 'articles#search'  # works from a non-article page
+                          # get 'articles/articles/search' => 'articles#search'  # works from an article page
+                          # 'articles/search?term=xyz'
+                          #shows 'top 10' articles on article index
+                          get 'articles/you_should_read' => 'articles#index'
+                          #shows most recent version of A SINGLE article
 
-  get 'categories' => 'categories#index'
-  get 'categories/:category_name' => 'categories#show', as: :category_name
+            get 'articles/new' => 'articles#new', as: :new_article
+                          get 'articles/:article_title' => 'articles#show_recent', as: :show_recent
 
-  get 'signup' => 'users#new'
-  get 'login' => 'sessions#new'
-  post 'login' => 'sessions#create'
-  delete 'logout' => 'sessions#destroy'
+                  delete 'articles/:article_title' => 'articles#destroy', as: :delete_article
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+                          #creates a new version for the given article
+            get 'articles/:article_title/new_version' => 'versions#new', as: :new_version
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+            post 'articles/:article_title' => 'versions#create', as: :versions
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+                          #allows you to edit a version that has not been published (if published, encourage them to write a new version),
+            post 'articles/:article_title/versions/:id' =>'versions#update', as: :version
+            get 'articles/:article_title/versions/:id/edit' => 'versions#edit'
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+            get 'articles/:article_title/versions/:id' => 'versions#show'
+            get 'articles/:article_title/versions/:id/publish' => 'versions#publish'
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
+                          #create a new article
 
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+            post 'articles' => 'articles#create'
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-end
+                          #show the category index, show all articles associated with a given category
+
+                          get 'categories' => 'categories#index'
+                          get 'categories/:category_name' => 'categories#show', as: :category_name
+
+                          get 'signup' => 'users#new'
+                          get 'login' => 'sessions#new'
+                          post 'login' => 'sessions#create'
+                          delete 'logout' => 'sessions#destroy'
+
+                          # You can have the root of your site routed with "root"
+                          # root 'welcome#index'
+
+                          # Example of regular route:
+                          #   get 'products/:id' => 'catalog#view'
+
+                          # Example of named route that can be invoked with purchase_url(id: product.id)
+                          #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+
+                          # Example resource route (maps HTTP verbs to controller actions automatically):
+                          #   resources :products
+
+                          # Example resource route with options:
+                          #   resources :products do
+                          #     member do
+                          #       get 'short'
+                          #       post 'toggle'
+                          #     end
+                          #
+                          #     collection do
+                          #       get 'sold'
+                          #     end
+                          #   end
+
+                          # Example resource route with sub-resources:
+                          #   resources :products do
+                          #     resources :comments, :sales
+                          #     resource :seller
+                          #   end
+
+                          # Example resource route with more complex sub-resources:
+                          #   resources :products do
+                          #     resources :comments
+                          #     resources :sales do
+                          #       get 'recent', on: :collection
+                          #     end
+                          #   end
+
+                          # Example resource route with concerns:
+                          #   concern :toggleable do
+                          #     post 'toggle'
+                          #   end
+                          #   resources :posts, concerns: :toggleable
+                          #   resources :photos, concerns: :toggleable
+
+                          # Example resource route within a namespace:
+                          #   namespace :admin do
+                          #     # Directs /admin/products/* to Admin::ProductsController
+                          #     # (app/controllers/admin/products_controller.rb)
+                          #     resources :products
+                          #   end
+                        end
