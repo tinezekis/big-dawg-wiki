@@ -1,6 +1,9 @@
 <div class="navbar-fixed">
   <nav class="green darken-1">
     <div class="nav-wrapper">
+      <% if current_user && current_user.permission_level == "big_dawg" %>
+        <%= image_tag "big_dog.png", class: "big_dog" %>
+      <% end %>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <% if current_user %>
           <li>
@@ -11,7 +14,10 @@
               </div>
             </form>
           </li>
-          <li><%= current_user.username %></li>
+          <% if current_user.permission_level == "big_dawg" %>
+            <li><%= link_to "Peep these dawgs", users_path %></li>
+          <% end %>
+          <li>Hey, <%= current_user.username %>!</li>
           <li><%= link_to 'Home', '/articles/you_should_read' %></li>
           <li><%= link_to 'Create new article', new_article_path %></li>
           <li><%= link_to 'Logout', :logout, method: :delete %></li>
@@ -22,4 +28,3 @@
     </div>
   </nav>
 </div>
-

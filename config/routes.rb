@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show, :index]
 
 
-
+  get 'users/:id/upgrade' => 'users#upgrade', as: :upgrade
   get 'articles/search' => 'articles#search'  # works from a non-article page
   # get 'articles/articles/search' => 'articles#search'  # works from an article page
   # 'articles/search?term=xyz'
@@ -40,7 +40,6 @@ Rails.application.routes.draw do
 
   get 'categories' => 'categories#index'
   get 'categories/:category_name' => 'categories#show', as: :category_name
-
 
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'

@@ -1,6 +1,11 @@
 <div class="row">
 	<div class="col s12">
-		<h2 class="grey-text">Read all of these, dawg.</h2>
+		<h2 class="brown-text text-darken-2">Read all of these, dawg.</h2>
+    <% if current_user.permission_level == 'big_dawg' %>
+		  <h3 class="grey-text">Read all of these, Dawg.</h3>
+    <% else %>
+      <h3 class="grey-text">Read all of these, dawg.</h3>
+    <% end %>
 	</div>
 </div>
 
@@ -8,7 +13,7 @@
 <% @articles.each do |current_version| %>
 	<div class="divider"></div>
 		<div class="section">
-	    <h5><%= link_to current_version.article.title,  show_recent_path(current_version.article.slug), class: "index_li" %></h5>
-	    <p class="index_li">Sample Text</p>
+	    <h5><%= link_to current_version.article.title,  show_recent_path(current_version.article.slug), class: "index_li green-text text-darken-1" %></h5>
+	    <p class="index_li brown-text text-darken-2">Sample Text</p>
 		</div>
 <% end %>
