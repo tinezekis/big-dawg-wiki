@@ -3,11 +3,8 @@ class VersionsController < ApplicationController
   def new
     if current_user
       @display = VersionDisplayObject.new(params[:article_title])
-      # slug = params[:article_title]
-      # @article = Article.find(Article.match_id(slug))
-      # @version = @article.current_version || Version.new
-      # @sections = @version.get_sections
-      # @markdown_content = @version.generate_markdown
+      @display.set_current_version
+      @display.set_sections_and_markdown
   else
     redirect_to "/"
   end
@@ -15,17 +12,24 @@ class VersionsController < ApplicationController
 
   def create
     if current_user
-      @version = Version.new(content: params[:version][:content], footnotes: params[:version][:footnotes])
-      @version.updating_author = current_user
-      @version.categories = Category.parse_categories_from_string(params[:categories])
       slug = params[:article_title]
-      @article = Article.find(Article.match_id(slug))
-      @version.article = @article
+      @display = VersionDisplayObject.new(slug)
 
-      if @version.save
+      version = Version.new_version(current_user,
+                                    @display.article,
+                                    params[:version])
+
+      version.categories = Category.parse_categories_from_string(params[:categories])
+
+      good = version.save
+
+      @display.version= version
+
+      if good
+
         redirect_to "/articles/#{@version.article.to_param}/versions/#{@version.id}"
       else
-        @errors = @version.errors.full_messages
+        @display.errors = @version.errors.full_messages
         render :"views/versions/new"
       end
 
@@ -61,6 +65,7 @@ class VersionsController < ApplicationController
     @version.is_published = true
     @version.article.versions.each do |version|
       version.is_most_recent = false
+      version.save
     end
     @version.is_most_recent = true
     @version.save

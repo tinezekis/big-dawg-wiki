@@ -4,10 +4,22 @@ class Version < ActiveRecord::Base
   after_create :generate_markdown
 
   belongs_to :article
-  # No user model yet...
   belongs_to :updating_author, class_name: :"User"
   has_many :categorizations
   has_many :categories, through: :categorizations
+
+  ######  class   #######
+
+
+  def self.new_version(author, article, arguments)
+    v = Version.new(arguments)
+    v.updating_author = author
+    v.article = article
+    return v
+  end
+
+
+  #####  instance   #######
 
   def generate_markdown
     @sections = self.get_sections
