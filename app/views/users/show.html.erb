@@ -1,7 +1,7 @@
 <h2>Here's Your Profile</h2>
 
 
-<h4> Unpublished Articles. </h4>
+<h4> Unpublished Versions. </h4>
 <% unpublished = current_user.versions.select do |version| %>
   <% !version.is_published %>
 <% end %>
@@ -11,19 +11,6 @@
 <% end %>
 
 
-<% user_published = Article.published_articles.select{|article| article.orig_author == current_user} %>
-<% user_published = Article.published_articles.select{|article| article.orig_author == current_user} %>
-
-
-<h4>Published Articles</h4>
-<% user_published.each do |article| %>
-  <div><%= article.title %></div>
-<% end %>
-
-<h4>All articles</h4>
-<% current_user.articles.each do |article| %>
-  <div> <%= article.title %> </div>
-<% end %>
 
 
 
