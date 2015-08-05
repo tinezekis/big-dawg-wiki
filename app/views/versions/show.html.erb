@@ -100,7 +100,7 @@
       </div>
     <% end %>
 
-    <% if @version.is_published == false || current_user.permission_level == 'big_dawg' %>
+    <% if @version.is_published == false && @version.updating_author == current_user || current_user.permission_level == 'big_dawg' %>
     <div class="s12">
       <a class="cyan-text text-lighten-1" href="/articles/<%= @version.article.to_param %>/versions/<%= @version.id %>/edit">Edit / Publish Article </a>
     </div>
