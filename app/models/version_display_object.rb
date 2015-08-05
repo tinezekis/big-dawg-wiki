@@ -7,8 +7,8 @@ class VersionDisplayObject
 
 	end
 
-	attr_reader :article, :version, :sections, :markdown_content, :errors
-
+	attr_reader :article, :sections, :markdown_content, :errors
+	attr_accessor :version
 
 	def edited_by_second_user?
 		@version.updating_author && @article.orig_author != @version.updating_author
