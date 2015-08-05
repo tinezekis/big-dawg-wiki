@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @dawgs = User.all
   end
 
   private
