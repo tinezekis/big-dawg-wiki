@@ -13,16 +13,16 @@ def generate_content
   end
   content
 end
-
-categories << Category.create(name:"music")
-categories << Category.create(name:"pizza")
-categories << Category.create(name:"kittens")
-categories << Category.create(name:"justice")
-categories << Category.create(name:"space cats")
-categories << Category.create(name:"tacos")
-categories << Category.create(name:"priceless gems")
-categories << Category.create(name:"Ancient Rome")
-categories << Category.create(name:"waterslides")
+created_categories = []
+created_categories << Category.create(name:"music")
+created_categories << Category.create(name:"pizza")
+created_categories << Category.create(name:"kittens")
+created_categories << Category.create(name:"justice")
+created_categories << Category.create(name:"space cats")
+created_categories << Category.create(name:"tacos")
+created_categories << Category.create(name:"priceless gems")
+created_categories << Category.create(name:"Ancient Rome")
+created_categories << Category.create(name:"waterslides")
 
 a1v1 = Version.create!(article: a1, updating_author: a1.orig_author, content: generate_content, footnotes: Faker::Lorem.sentence, is_most_recent: false, is_published: true)
 a1v2 = Version.create!(article: a1, updating_author: a1.orig_author, content: generate_content, footnotes: Faker::Lorem.sentence, is_most_recent: false, is_published: true)
@@ -54,8 +54,8 @@ sectioned_article_version_1 = Version.create!(article: sectioned_article, updati
 sectioned_article_version_2 = Version.create!(article: sectioned_article, updating_author: users.sample, content: "#First Section\nHere's a paragraph about some stuff.\n#Another Section\nHere's another paragraph.\n#Section the Last\nHere's more content.\nAnd here's a final paragraph.", footnotes: "I got this information somewhere", is_most_recent: true, is_published: true)
 
 
-all_versions = Versiona.all
+all_versions = Version.all
 
-all_versions.each do |version|
-  version.categories << categories.sample(4)
+all_versions.each do |ver|
+  ver.categories << created_categories.sample(4)
 end
