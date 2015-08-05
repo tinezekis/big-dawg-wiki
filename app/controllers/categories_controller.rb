@@ -9,6 +9,7 @@ class CategoriesController < ApplicationController
     slug = params[:category_name]
     @category = Category.includes(:versions).find(Category.match_id(slug))
     #show all articles(most recent versions) associated with a given category
+    @categories = Category.alphabetical_list
   end
 
 
