@@ -24,9 +24,11 @@
 
 <% if @version.is_most_recent == false %>
   <% most_recent = @version.article.current_version %>
+   <% if most_recent %>
   <div>
     <p class="brown-text text-darken-2">There is a more recent version of this article, which you can view <a href="/articles/<%= @version.article.to_param %>/versions/<%= most_recent.id %>">here</a>.</p>
   </div>
+  <% end %>
 <% end %>
 
 <div class="row">

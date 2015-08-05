@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'articles/:article_title/versions/:id/edit' => 'versions#edit', as: :edit_version
 
 
-  get 'articles/:article_title/versions/:id' => 'versions#show'
+  get 'articles/:article_title/versions/:id' => 'versions#show', as: :show_version
   get 'articles/:article_title/versions/:id/publish' => 'versions#publish'
 
   #create a new article
