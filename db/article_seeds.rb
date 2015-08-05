@@ -28,8 +28,8 @@ sectioned_article_version_2 = Version.create!(article: sectioned_article, updati
 Categorization.create!(category: dogs,
                         version: poodle01)
 
-10.times do
-  Category.create!(name: Faker::Lorem.word)
+['dog', 'cat', 'chicken', 'rooster', 'rocketship', 'solar-yatch', 'space-poodle', 'small-rodent', 'cat-people', 'roller-coaster'].each do |word| 
+  Category.create!(name: word)
 end
 cat = Category.all
 

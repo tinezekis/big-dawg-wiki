@@ -2,18 +2,18 @@ class VersionsController < ApplicationController
 
   def new
     if current_user
-      @version = Version.new
       slug = params[:article_title]
       @article = Article.find(Article.match_id(slug))
-      @version.article = @article
-
+      @version = @article.current_version || Version.new
+      @sections = @version.get_sections
+      @markdown_content = @version.generate_markdown
   else
     redirect_to "/"
   end
   end
 
   def create
-    # if current_user
+    if current_user
       @version = Version.new(content: params[:version][:content], footnotes: params[:version][:footnotes])
       @version.updating_author = current_user
       @version.categories = Category.parse_categories_from_string(params[:categories])
@@ -28,9 +28,9 @@ class VersionsController < ApplicationController
         render :"views/versions/new"
       end
 
-    # else
-    #   redirect_to "/"
-    # end
+    else
+      redirect_to "/"
+    end
   end
 
   def edit
