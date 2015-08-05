@@ -2,7 +2,7 @@
   <h1 ><%= @version.article.title %></h1>
 </div>
 
-<% if @version.is_most_recent == false %>
+<% if @version.is_published && !@version.is_most_recent %>
   <% most_recent = @version.article.current_version %>
   <div>
     <p>There is a more recent version of this article, which you can view <a href="/articles/<%= @version.article.to_param %>/versions/<%= most_recent.id %>">here</a>.</p>
