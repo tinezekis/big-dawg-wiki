@@ -59,7 +59,7 @@ class ArticlesController < ApplicationController
       version.destroy
     end
     @article.destroy
-    redirect_to 'articles/you_should_read'
+    redirect_to '/articles/you_should_read'
   end
 
 end
