@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>BigDawgWiki</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <!-- Compiled and minified CSS -->
   <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
@@ -13,14 +13,16 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<main>
   <%= render "shared/nav" %>
 
   <div class="container">
-	  <div class="card-panel large z-depth-1">
+	  <div class="card-panel brown lighten-5 large z-depth-1">
 		  <%= yield %>
 	  </div>
   </div>
 
-</body>
+  <%= render "shared/footer" %>
+
+</main>
 </html>

@@ -14,6 +14,20 @@ class UsersController < ApplicationController
   end
 
   def index
+    @dawgs = User.all.order(:created_at)
+  end
+
+  def upgrade
+    redirect_to '/' if current_user.permission_level != "big_dawg"
+    @user = User.find(params[:id])
+    @user.update(permission_level: "big_dawg")
+    username = @user.username
+    permission_level = @user.permission_level
+    if request.xhr?
+      render json: @user.to_json
+    else
+      redirect_to '/users'
+    end
   end
 
   private

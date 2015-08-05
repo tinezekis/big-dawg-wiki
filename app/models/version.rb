@@ -12,7 +12,8 @@ class Version < ActiveRecord::Base
   def generate_markdown
     @sections = self.get_sections
     @markdown_content = self.get_newlines
-    @markdown_content
+    @markdown_content = self.get_bold_text
+    @markdown_content = self.get_italic_text
   end
 
   def get_sections
@@ -39,5 +40,26 @@ class Version < ActiveRecord::Base
     @markdown_content = @markdown_content.gsub(/\n/, "<br><br>")
   end
 
+  def get_bold_text
+    index = @markdown_content.index(/\*/)
+    counter = 1
+    while index
+      (counter % 2 == 1) ? @markdown_content[index] = "<strong>" : @markdown_content[index] = "</strong>"
+      index = @markdown_content.index(/\*/)
+      counter += 1
+    end
+    @markdown_content
+  end
+
+  def get_italic_text
+    index = @markdown_content.index(/\_/)
+    counter = 1
+    while index
+      (counter % 2 == 1) ? @markdown_content[index] = "<em>" : @markdown_content[index] = "</em>"
+      index = @markdown_content.index(/\_/)
+      counter += 1
+    end
+    @markdown_content
+  end
 
 end
