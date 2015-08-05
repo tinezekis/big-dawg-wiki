@@ -14,6 +14,9 @@ class UsersController < ApplicationController
   end
 
   def index
+    @dawgs = User.all
+    redirect_to '/' if current_user.permission_level != "big_dawg"
+
   end
 
   private
