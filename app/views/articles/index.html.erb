@@ -1,31 +1,35 @@
 <div class="row">
-	<div class="col s12">
-    <% if current_user.permission_level == 'big_dawg' %>
-		  <h3 class="brown-text text-darken-2">Read all of these, Dawg.</h3>
-    <% else %>
-      <h3 class="brown-text text-darken-2">Read all of these, dawg.</h3>
+  <div class="card-panel col s brown lighten-5 large z-depth-1">
+    <div class="row">
+    	<div class="col s12">
+        <% if current_user.permission_level == 'big_dawg' %>
+    		  <h3 class="brown-text text-darken-2">Read all of these, Dawg.</h3>
+        <% else %>
+          <h3 class="brown-text text-darken-2">Read all of these, dawg.</h3>
+        <% end %>
+    	</div>
+    </div>
+
+
+
+
+    <!-- There is a slight issue here. @articles is actually recent versions. -->
+    <% @articles.each do |current_version| %>
+      <div class="divider"></div>
+        <div class="section">
+          <h5><%= link_to current_version.article.title,  show_recent_path(current_version.article.slug), class: "index_li green-text text-darken-1" %></h5>
+          <p class="index_li brown-text text-darken-2">Sample Text</p>
+        </div>
     <% end %>
-	</div>
+  </div>
+
+  <!-- This is the div for the category "sidebar"-->
+  <div class="col s2">
+    <ul class="section table-of-contents">
+    	<li><p>All Categories:</p></li>
+      <% @categories.each do |category| %>
+        <li><a class="green-text text-darken-1" href="/categories/<%=category.to_params%>"><%= category.name %></a></li>
+      <% end %>
+    </ul>
+  </div>
 </div>
-
-<!-- This is the div for the category "sidebar"-->
-<div>
-  <p>All Categories:</p>
-  <ul>
-    <% @categories.each do |category| %>
-      <li><a href="/categories/<%=category.to_params%>"><%= category.name %></a></li>
-    <% end %>
-  </ul>
-</div>
-
-
-
-
-<!-- There is a slight issue here. @articles is actually recent versions. -->
-<% @articles.each do |current_version| %>
-	<div class="divider"></div>
-		<div class="section">
-	    <h5><%= link_to current_version.article.title,  show_recent_path(current_version.article.slug), class: "index_li green-text text-darken-1" %></h5>
-	    <p class="index_li brown-text text-darken-2">Sample Text</p>
-		</div>
-<% end %>
