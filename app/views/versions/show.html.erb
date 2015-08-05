@@ -4,15 +4,6 @@
       <h1 class="brown-text text-darken-2"><%= @version.article.title %></h1>
     </div>
 
-  <% if @version.is_most_recent == false %>
-    <% most_recent = @version.article.current_version %>
-     <% if most_recent %>
-    <div>
-      <p class="brown-text text-darken-2">There is a more recent version of this article, which you can view <a href="/articles/<%= @version.article.to_param %>/versions/<%= most_recent.id %>">here</a>.</p>
-    </div>
-    <% end %>
-  <% end %>
-
     <div class="row">
       <% if @sections.length > 0 %>
         <div class="col l6 s12">
@@ -27,18 +18,26 @@
         </div>
 
       <div class="col l5 s12">
-      <h4 class="brown-text text-darken-2">Written by <%= @version.article.orig_author.username %></h4>
+        <h4 class="brown-text text-darken-2">Written by <%= @version.article.orig_author.username %></h4>
         <% if @version.article.orig_author != @version.updating_author %>
-        <h5 class="brown-text text-darken-2">Edited by <%= @version.updating_author.username %></h5>
+          <h5 class="brown-text text-darken-2">Edited by <%= @version.updating_author.username %></h5>
+        <% end %>
+
+        <% if @version.is_published && !@version.is_most_recent %>
+          <% most_recent = @version.article.current_version %>
+          <% if most_recent %>
+            <div>
+              <p class="brown-text text-darken-2">There is a more recent version of this article, which you can view <a href="/articles/<%= @version.article.to_param %>/versions/<%= most_recent.id %>">here</a>.</p>
+            </div>
+          <% end %>
         <% end %>
 
         <% if current_user == @version.article.orig_author || current_user.permission_level == "big_dawg" %>
           <%= link_to 'Wassup Big Dawg, wanna edit / delete this ish?', edit_version_path(@version.article, @version), class: "cyan-text text-lighten-1" %>
         <% end %>
+        </div>
       </div>
 
-      </div>
-    <% end %>
 
     <div class="row">
       <div class="col s6 offset-s3">
@@ -56,7 +55,6 @@
     <% if @version.footnotes %>
       <div class="divider"></div>
       <div class="section">
-
         <h5 class="brown-text text-darken-2">Footnotes</h5>
         <p class="brown-text text-darken-2"><%= @version.footnotes %></p>
       </div>
@@ -77,21 +75,23 @@
 
     <div class="divider"></div>
     <div class="section">
+
       <div class="row">
         <% if @version.article.orig_author == current_user || current_user.permission_level == 'big_dawg' %>
-          <div class="s12">
+          <div class="col s12">
             <a class="cyan-text text-lighten-1" href="/articles/<%= @version.article.to_param %>/new_version">Make a new version of this article.</a>
           </div>
         <% end %>
 
-      <% if @version.is_published == false && @version.updating_author == current_user || current_user.permission_level == 'big_dawg' %>
-      <div class="s12">
-        <a class="cyan-text text-lighten-1" href="/articles/<%= @version.article.to_param %>/versions/<%= @version.id %>/edit">Edit / Publish Article </a>
+        <% if @version.is_published == false && @version.updating_author == current_user || current_user.permission_level == 'big_dawg' %>
+          <div class="col s12">
+            <a class="cyan-text text-lighten-1" href="/articles/<%= @version.article.to_param %>/versions/<%= @version.id %>/edit">Edit / Publish Article </a>
+          </div>
+        <% end %>
       </div>
-      <% end %>
     </div>
-  </div>
-    <!-- This is the div for the category "sidebar"... I'm not sure where you would like it so I'm just going to leave it here...-->
+
+  <!-- This is the div for the category "sidebar"... I'm not sure where you would like it so I'm just going to leave it here...-->
   <div class="col l2 s12">
     <% if @categories.length > 0 %>
       <p>Related Categories and Articles:</p>
@@ -107,6 +107,8 @@
             <% end %>
         <% end %>
       </ul>
+      <% end %>
     <% end %>
     </div>
+  </div>
 </div>

@@ -1,30 +1,14 @@
-# Category.destroy_all if Category.any?
-# Article.destroy_all if Article.any?
-# Version.destroy_all if Version.any?
-# Categorization.destroy_all if Categorization.any?
+Category.destroy_all if Category.any?
+Article.destroy_all if Article.any?
+Version.destroy_all if Version.any?
+Categorization.destroy_all if Categorization.any?
 
 # users = User.all
 
-# dogs = Category.create!(name: "Dogs")
-
-# pizza = Category.create!(name: "Pizza")
-
-# poodle = Article.create!(title: "Poodles are cool",
-#                           orig_author_id: users.sample.id)
-
-# poodle01 = Version.create!(updating_author_id: users.sample.id,
-#                             article: poodle,
-#                             content: "first dog on the moon",
-#                             footnotes: "a very reputible source",
-#                             is_most_recent: false,
-#                             is_published: false)
 
 
-# Categorization.create!(category: dogs,
-#                         version: poodle01)
-
-# 10.times do
-#   Category.create!(name: Faker::Lorem.word)
+# ['dog', 'cat', 'chicken', 'rooster', 'rocketship', 'solar-yatch', 'space-poodle', 'small-rodent', 'cat-people', 'roller-coaster'].each do |word|
+#   Category.create!(name: word)
 # end
 # cat = Category.all
 

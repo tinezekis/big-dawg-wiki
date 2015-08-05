@@ -21,7 +21,7 @@ created_categories << Category.create(name:"justice")
 created_categories << Category.create(name:"space cats")
 created_categories << Category.create(name:"tacos")
 created_categories << Category.create(name:"priceless gems")
-created_categories << Category.create(name:"Ancient Rome")
+created_categories << Category.create(name:"ancient rome")
 created_categories << Category.create(name:"waterslides")
 
 a1v1 = Version.create!(article: a1, updating_author: a1.orig_author, content: generate_content, footnotes: Faker::Lorem.sentence, is_most_recent: false, is_published: true)
