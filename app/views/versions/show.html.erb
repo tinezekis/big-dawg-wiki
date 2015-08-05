@@ -74,9 +74,11 @@
 <div class="divider"></div>
 <div class="section">
   <div class="row">
-    <div class="s12">
-      <a class="cyan-text text-lighten-1" href="/articles/<%= @version.article.to_param %>/new_version">Make a new version of this article.</a>
-    </div>
+    <% if @version.article.orig_author == current_user || current_user.permission_level == 'big_dawg' %>
+      <div class="s12">
+        <a class="cyan-text text-lighten-1" href="/articles/<%= @version.article.to_param %>/new_version">Make a new version of this article.</a>
+      </div>
+    <% end %>
 
     <% if @version.is_published == false || current_user.permission_level == 'big_dawg' %>
     <div class="s12">
