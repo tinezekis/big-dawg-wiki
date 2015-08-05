@@ -8,7 +8,7 @@
     <tr>
       <td><%= dawg.username %></td> <td><%= dawg.permission_level %></td>
       <% if dawg.permission_level != "big_dawg" %>
-        <td><a class="upgrade_user" href="/users/<%=dawg.id %>/update">upgrade user</a></td>
+        <td><a class="upgrade_user" href="/users/<%=dawg.id %>/upgrade">upgrade user</a></td>
       <% else %>
         <td></td>
       <% end %>

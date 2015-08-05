@@ -14,11 +14,13 @@ class UsersController < ApplicationController
   end
 
   def index
-    @dawgs = User.all
+    @dawgs = User.all.order(:created_at)
   end
 
   def upgrade
     @user = User.find(params[:id])
+    # @user.permission_level = "big_dawg"
+    # @user.save
     @user.update(permission_level: "big_dawg")
     p User.find(params[:id])
     # p "tacooos"
