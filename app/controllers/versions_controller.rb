@@ -2,11 +2,12 @@ class VersionsController < ApplicationController
 
   def new
     if current_user
-      slug = params[:article_title]
-      @article = Article.find(Article.match_id(slug))
-      @version = @article.current_version || Version.new
-      @sections = @version.get_sections
-      @markdown_content = @version.generate_markdown
+      @display = VersionDisplayObject.new(params[:article_title])
+      # slug = params[:article_title]
+      # @article = Article.find(Article.match_id(slug))
+      # @version = @article.current_version || Version.new
+      # @sections = @version.get_sections
+      # @markdown_content = @version.generate_markdown
   else
     redirect_to "/"
   end
