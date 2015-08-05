@@ -6,10 +6,9 @@ class VersionsController < ApplicationController
       slug = params[:article_title]
       @article = Article.find(Article.match_id(slug))
       @version.article = @article
-
-  else
-    redirect_to "/"
-  end
+    else
+      redirect_to "/"
+    end
   end
 
   def create
