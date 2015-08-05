@@ -18,14 +18,9 @@ class UsersController < ApplicationController
   end
 
   def upgrade
+    redirect_to '/' if current_user.permission_level != "big_dawg"
     @user = User.find(params[:id])
-    # @user.permission_level = "big_dawg"
-    # @user.save
     @user.update(permission_level: "big_dawg")
-    p User.find(params[:id])
-    # p "tacooos"
-    # p @user.errors.full_messages
-    # p @user.save
     username = @user.username
     permission_level = @user.permission_level
     if request.xhr?
@@ -33,7 +28,6 @@ class UsersController < ApplicationController
     else
       redirect_to '/users'
     end
-    # redirect_to '/users'
   end
 
   private
