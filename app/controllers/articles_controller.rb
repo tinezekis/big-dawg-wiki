@@ -6,6 +6,7 @@ class ArticlesController < ApplicationController
     @version = @article.versions.where(is_most_recent: true)[0]
     @sections = @version.get_sections
     @markdown_content = @version.generate_markdown
+    @categories = @version.categories
     render :"versions/show"
     #this should find the most recent version associated with the given article and display it on a show page
   end
@@ -19,6 +20,7 @@ class ArticlesController < ApplicationController
     @ordered_by_content_length = @recent_versions.sort_by{|version| version.content.length}.reverse ## to get desc
     #for edwin
     @articles = @ordered_by_content_length[0..9]
+    @categories = Category.alphabetical_list
   end
 
   def new
