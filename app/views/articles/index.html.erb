@@ -8,6 +8,19 @@
 	</div>
 </div>
 
+<!-- This is the div for the category "sidebar"-->
+<div>
+  <p>All Categories:</p>
+  <ul>
+    <% @categories.each do |category| %>
+      <li><a href="/categories/<%=category.to_params%>"><%= category.name %></a></li>
+    <% end %>
+  </ul>
+</div>
+
+
+
+
 <!-- There is a slight issue here. @articles is actually recent versions. -->
 <% @articles.each do |current_version| %>
 	<div class="divider"></div>

@@ -4,6 +4,17 @@
 	</div>
 </div>
 
+<!-- This is the div for the category "sidebar"-->
+<div>
+  <p>All Categories:</p>
+  <ul>
+    <% @categories.each do |category| %>
+      <li><a href="/categories/<%=category.to_params%>"><%= category.name %></a></li>
+    <% end %>
+  </ul>
+</div>
+
+
 <% @category.versions.each do |version| %>
 <div class="divider"></div>
 	<div class="section">

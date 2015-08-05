@@ -51,6 +51,7 @@ class VersionsController < ApplicationController
   def show
     @version = Version.find(params[:id])
     @sections = @version.get_sections
+    @categories = @version.categories
     @markdown_content = @version.generate_markdown
   end
 
