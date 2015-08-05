@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="card-panel col s12 brown lighten-5 large z-depth-1">
+  <div class="card-panel col l10 s12 brown lighten-5 large z-depth-1">
     <div class="row">
     	<div class="col l6 s12">
         <% if current_user.permission_level == 'big_dawg' %>
@@ -24,7 +24,7 @@
   </div>
 
   <!-- This is the div for the category "sidebar"-->
-  <div class="col s2 offset-s12">
+  <div class="col l2 s12">
     <ul class="section table-of-contents">
     	<li><p>All Categories:</p></li>
       <% @categories.each do |category| %>
