@@ -5,7 +5,7 @@ $(document).ready(function(){
     url =target.attr("href");
     var request = $.ajax({
       url: url,
-      method: "PATCH"
+      method: "GET"
     });
 
     request.done(function(response){

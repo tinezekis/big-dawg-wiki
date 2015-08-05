@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show, :index]
 
 
-  patch 'users/:id/update' => 'users#update', as: :upgrade
+  patch 'users/:id/upgrade' => 'users#upgrade', as: :upgrade
   get 'articles/search' => 'articles#search'  # works from a non-article page
   # get 'articles/articles/search' => 'articles#search'  # works from an article page
   # 'articles/search?term=xyz'

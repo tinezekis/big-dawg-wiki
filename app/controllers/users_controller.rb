@@ -17,9 +17,10 @@ class UsersController < ApplicationController
     @dawgs = User.all
   end
 
-  def update
+  def upgrade
     @user = User.find(params[:id])
     @user.update(permission_level: "big_dawg")
+    p User.find(params[:id])
     # p "tacooos"
     # p @user.errors.full_messages
     # p @user.save
