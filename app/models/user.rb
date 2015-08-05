@@ -3,5 +3,6 @@ class User < ActiveRecord::Base
   has_many :versions, foreign_key: :updating_author_id
 
   has_secure_password
-  validates :password, length: {minimum: 6}
+  validates :password, length: {minimum: 6}, allow_nil: true
+
 end
