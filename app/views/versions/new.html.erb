@@ -1,5 +1,13 @@
 <h1>New Version For <%= @version.article.title %></h1>
 
+<p id="markdown-instructions">If you would like to create section titles for your article, begin the line with a pound symbol (#) and press enter to start a new line for the content of that section. To create a new paragraph, press enter. If you would like to make text <strong>bold</strong>, put an asterisk (*) before and after the text you would like to make bold. For <em>italics</em>, put an underscore (_) before and after the text you wish to italicize. For example:
+  <ul>
+    <li>#This Text Would Display as a Section Title</li>
+    <li>The word *bold* will appear in bold text</li>
+    <li>This is how we make _italics_ appear in our text</li>
+  </ul>
+</p>
+
 <form id="create-entry-form" action="/articles/<%= @version.article.to_param %>" method="POST">
   <textarea name="version[content]" row="5" cols="50" placeholder="Enter Content"></textarea> <br />
   <input type="text" name="version[footnotes]" placeholder="Enter Footnotes"> <br />
