@@ -35,7 +35,13 @@ class Category < ActiveRecord::Base
     end
   end
 
+def self.alphabetical_list
+  Category.order(:name)
+end
 
+def most_recent_associated_versions
+  most_recent_versions = self.versions.where(is_most_recent: true)
+end
 
 
 
