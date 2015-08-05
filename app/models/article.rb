@@ -44,7 +44,6 @@ class Article < ActiveRecord::Base
     self.versions.find_by(is_most_recent: true)
   end
 
-# dwin thinks
   def self.published_articles
     self.select do |article|
       article.versions.where(is_published: true).any?

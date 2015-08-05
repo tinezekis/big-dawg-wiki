@@ -2,6 +2,7 @@
   <h1 class="brown-text text-darken-2"><%= @version.article.title %></h1>
 </div>
 
+
 <!-- This is the div for the category "sidebar"... I'm not sure where you would like it so I'm just going to leave it here...-->
 <div>
   <% if @categories.length > 0 %>
@@ -22,7 +23,7 @@
 </div>
 
 
-<% if @version.is_most_recent == false %>
+<% if @version.is_published && !@version.is_most_recent %>
   <% most_recent = @version.article.current_version %>
    <% if most_recent %>
   <div>

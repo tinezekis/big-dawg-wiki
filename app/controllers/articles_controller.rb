@@ -34,7 +34,7 @@ class ArticlesController < ApplicationController
 
   def create
 
-    if current_user
+    # if current_user
       @article = Article.new({title:params[:article][:title],orig_author_id:current_user.id})
       if @article.save
         redirect_to "/articles/#{@article.to_param}/new_version"
@@ -42,9 +42,9 @@ class ArticlesController < ApplicationController
         @errors = @article.errors.full_messages
         render :"articles/new"
       end
-    else
-      redirect_to "/"
-    end
+    # else
+    #   redirect_to "/"
+    # end
   end
 
   def search
