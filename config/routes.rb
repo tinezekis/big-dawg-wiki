@@ -6,26 +6,13 @@
 
 
 
-# needed routes are
-  # - get-index_articles (index of multiple articles)
-
-  # - get-show_articles (article show where version (ie content) = current_version & published)
-  # - get-articles-version-history (index of versions for articles)
-  # - get-articles-historical-id (show where version = id)
-
-  # - get-new_version (create and "published edit" a version)
-  # - post-version (create and "published edit")
-  
-  # - get-edit_version (unpublished edit)
-  # - patch-unpublish_version (as it says)
-
-  # - patch-publish_article (update article to published)
-
-  ## this really makes me want to move is_published off of version and onto article...  probably too late at this point
-
-
-# so what is the next step, seed data exists, so we can view the 
-
+  get 'users/:id/upgrade' => 'users#upgrade', as: :upgrade
+  get 'articles/search' => 'articles#search'  # works from a non-article page
+  # get 'articles/articles/search' => 'articles#search'  # works from an article page
+  # 'articles/search?term=xyz'
+  #shows 'top 10' articles on article index
+  get 'articles/you_should_read' => 'articles#index'
+  #shows most recent version of A SINGLE article
 
 
                           get 'articles/search' => 'articles#search'  # works from a non-article page

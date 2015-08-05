@@ -1,4 +1,13 @@
 <h1>Edit Version For <%= @version.article.title %></h1>
+
+<p id="markdown-instructions">If you would like to create section titles for your article, begin the line with a pound symbol (#) and press enter to start a new line for the content of that section. To create a new paragraph, press enter. If you would like to make text <strong>bold</strong>, put an asterisk (*) before and after the text you would like to make bold. For <em>italics</em>, put an underscore (_) before and after the text you wish to italicize. For example:
+  <ul>
+    <li>#This Text Would Display as a Section Title</li>
+    <li>The word *bold* will appear in bold text</li>
+    <li>This is how we make _italics_ appear in our text</li>
+  </ul>
+</p>
+
   <%= form_for :version, url: version_path(@version.article,@version) do |f| %>
   <%= f.label :content %>
   <%= f.text_field :content%>
