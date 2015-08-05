@@ -1,19 +1,21 @@
-<h3 class= "center">All dawgs</h3>
+<div class="card-panel brown lighten-5 large z-depth-1">
+  <h3 class= "center">All dawgs</h3>
 
-<table class="bordered striped responsive-table">
-  <tr>
-    <th>Username</th>
-    <th>Status</th>
-    <th>Action</th>
-  </tr>
-  <% @dawgs.each do |dawg| %>
+  <table class="bordered striped responsive-table">
     <tr>
-      <td><%= dawg.username %></td> <td><%= dawg.permission_level %></td>
-      <% if dawg.permission_level != "big_dawg" %>
-        <td><a class="upgrade_user" href="/users/<%=dawg.id %>/upgrade">upgrade user</a></td>
-      <% else %>
-        <td></td>
-      <% end %>
+      <th>Username</th>
+      <th>Status</th>
+      <th>Action</th>
     </tr>
-  <% end %>
-</table>
+    <% @dawgs.each do |dawg| %>
+      <tr>
+        <td><%= dawg.username %></td> <td><%= dawg.permission_level %></td>
+        <% if dawg.permission_level != "big_dawg" %>
+          <td><a class="upgrade_user" href="/users/<%=dawg.id %>/upgrade">upgrade user</a></td>
+        <% else %>
+          <td></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>
