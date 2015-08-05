@@ -18,7 +18,7 @@
 
     <div class="row">
       <div class="input-field">
-        <textarea class="materialize-textarea" name="version[content]" placeholder="Start Typing!"></textarea>
+        <textarea class="materialize-textarea" id="user-generated-content" name="version[content]" placeholder="Start Typing!"></textarea>
         <label for="version[content]">Content</label>
       </div>
     </div>
@@ -45,7 +45,9 @@
     <a href="/articles/<%= @version.article.to_param %>/versions/<%= @version.id %>/publish">Publish Article</a>
     <p>Caution: Once you publish an article, the current version can no longer be edited.</p>
   <% end %>
-  <div class="col l5 s6">Preview</div>
+  <div class="col l5 s6">Preview
+    <div id="preview-markdown"></div>
+  </div>
 </div>
 
 <div class="divider"></div>

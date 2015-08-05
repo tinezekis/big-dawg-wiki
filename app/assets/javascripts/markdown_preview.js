@@ -1,5 +1,10 @@
 $(document).ready(function() {
-  widget = new MarkdownWidget($("#user-generated-content"), $("#preview"));
+  var widget = new MarkdownWidget($("#user-generated-content"), $("#preview-markdown"));
+  $("#user-generated-content").on("keyup", function(event) {
+    $("#preview-markdown").html('')
+    var markdown_content = widget.markdownParcer($("#user-generated-content").val());
+    $("#preview-markdown").append(markdown_content);
+  });
 });
 
 function MarkdownWidget(input, output) {
@@ -7,96 +12,54 @@ function MarkdownWidget(input, output) {
   this.$output = output;
 };
 
-// *******************************
-
-
-
-
-
-
-
-
-
-
-// function MarkdownModel(){
-  // this.markdownHash = {
-  //   '_': function(string) {
-  //     return "<i>" + string.replace(/_/g, "") + "</i>"
-  //   },
-
-  // };
-// }
-
-
 MarkdownWidget.prototype.markdownParcer = function(input) {
-  var index = 0;
-  // this.$output.text("");
-  input = input.replace(/\*{2}/g, function(){
-    index++;
-    return (index % 2 === 1 ) ? "<strong>" : "</strong>" ;
-  });
-  var index = 0;
-  input = input.replace(/\*{1}/g, function(){
-    index++;
-    return (index % 2 === 1 ) ? "<em>" : "</em>" ;
-  });
-  var index = 0;
-  input = input.replace(/\_{1}/g, function(){
-    index++;
-    return (index % 2 === 1 ) ? "<em>" : "</em>" ;
-  });
-  var index = 0;
-  input = input.replace(/\n{1}/g, "<br>");
-  $(this.$output).append(input);
-
-  // widget.convertDoubles(this.$input.val());
-  // widget.convertSingles(this.$input.val());
-  // var strings = input.trim().replace(/\n/g, "<br>")
-  //for loop that goes through the whole textarea and strings[i] check string for mark down
-  //then if marked down  markdown hash(string[0])
-  // take converted hash(string)
-  // If **....**, replace first ** with <strong> and second ** with </strong>
-  // If *.....*, replace first * with <em> and second * with </em>
-
-  // If _....._, replace first _ with <em> and second _ with </em>
-
+  var output = input;
+  // Get bold function
+  var index = output.indexOf("*");
+  var counter = 1;
+  while (index !== -1) {
+    if (counter % 2 === 1) {
+      output = output.replace("*", "<strong>");
+    } else {
+      output = output.replace("*", "</strong>");
+    }
+    counter += 1;
+    index = output.indexOf("*");
+  }
+  // Get italics function
+  index = output.indexOf("_");
+  counter = 1;
+  while (index !== -1) {
+    if (counter % 2 === 1) {
+      output = output.replace("_", "<em>");
+    } else {
+      output = output.replace("_", "</em>");
+    }
+    counter += 1;
+    index = output.indexOf("_");
   }
 
-MarkdownWidget.prototype.convert = function(input) {
-  $(this.$output).append(input);
-  console.log($(this.$output));
+  var title = output.match(/\#.+\n/);
+  counter = 1;
+  while (title) {
+    var start_index = output.indexOf("#");
+    var length = title[0].length;
+    var end_index = start_index + length - 1;
+    output = replaceAt(end_index, "</h3>", output);
+    output = replaceAt(start_index, "<h3>", output);
+    counter += 1;
+    title = output.match(/\#.+\n/);
+    return output;
+  }
+
+  index = output.indexOf("\n");
+  while (index !== -1) {
+    output = output.replace("\n", "<br>");
+    index = output.indexOf("\n");
+  }
+  return output;
 };
- MarkdownWidget.prototype.convertSingles = function(input) {
-  console.log($(this.$output));
 
+function replaceAt(index, replacement, str) {
+  return str[0, index] + replacement + str[(index+1), -1];
 };
-
-
-
-  // console.log(input.match(/_/g).length);
-  // widget.convertUnderscores(input);
-  // If \n, replace \n with <br>
-
-  // Display content of textarea
-
-
-MarkdownWidget.prototype.updateInput = function() {
-  this.$output.text("");
-  widget.markdownParcer(this.$input.val());
-}
-
-MarkdownWidget.prototype.convertUnderscores = function(string) {
-  var underscores = string.match(/_/g);
-  // var count = underscores.length;
-  // if (count % 2 === 1) {
-  //   // pop last _ off of regex array
-  // }
-  // convert
-  // each if index of regex array is even, replace with <em>
-  // each if index of regex array is odd, replace with </em>
-
-}
-
-$("#source").on("keyup", function() {
-  widget.updateInput();
-  });
