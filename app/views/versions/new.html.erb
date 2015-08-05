@@ -5,13 +5,12 @@
 </div>
 
 <div class="row">
-	<%= form_for @version, html: {class: "col s8 offset-s2"} do |f| %>
-		<%= f.label :content %>
-		<%= f.text_area :content %>
-		<%= f.label :footnotes %>
-		<%= f.text_area :footnotes%>
-		<button class="btn waves-effect green darken-1 waves-light" type="submit" name="action">Create New Version
-		   <i class="material-icons">send</i>
-		 </button>
-	<% end %>
+	<form id="create-entry-form" action="/articles/<%= @version.article.to_param %>" method="POST">
+	  <textarea name="version[content]" row="5" cols="50" placeholder="Enter Content"></textarea>
+	  <input type="text" name="version[footnotes]" placeholder="Enter Footnotes">
+	  <input type="text" name="categories" placeholder="Categories (separate by commas)">
+	  <button class="btn waves-effect green darken-1 waves-light" type="submit" name="action">Create New Version
+	     <i class="material-icons">send</i>
+	   </button>
+	</form>
 </div>
