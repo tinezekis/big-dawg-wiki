@@ -2,9 +2,11 @@ class VersionsController < ApplicationController
 
   def new
     if current_user
+
       @display = VersionDisplayObject.new(params[:article_title])
       @display.set_current_version
       @display.set_sections_and_markdown
+
     else
       redirect_to "/"
     end
@@ -58,6 +60,7 @@ class VersionsController < ApplicationController
   def show
     @version = Version.find(params[:id])
     @sections = @version.get_sections
+    @categories = @version.categories
     @markdown_content = @version.generate_markdown
   end
 
