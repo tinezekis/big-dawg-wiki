@@ -13,6 +13,12 @@ class UsersController < ApplicationController
     end
   end
 
+
+  def show
+    @articles = Article.unpublished_for(self)
+
+  end
+  
   def index
     @dawgs = User.all.order(:created_at)
   end

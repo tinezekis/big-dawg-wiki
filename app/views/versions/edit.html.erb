@@ -1,66 +1,65 @@
-<div class="row">
-  <div class="col s10 offset-s1">
-    <h1 class="brown-text text-darken-2">Edit This Version For: <%= @version.article.title %></h1>
-    <p id="markdown-instructions">If you would like to create section titles for your article, begin the line with a pound symbol (#) and press enter to start a new line for the content of that section. To create a new paragraph, press enter. If you would like to make text <strong>bold</strong>, put an asterisk (*) before and after the text you would like to make bold. For <em>italics</em>, put an underscore (_) before and after the text you wish to italicize. For example:
-      <ul>
-        <li>#This Text Would Display as a Section Title</li>
-        <li>The word *bold* will appear in bold text</li>
-        <li>This is how we make _italics_ appear in our text</li>
-      </ul>
-    </p>
-    <p>Have fun! Write your content on the left and see a LIVE preview on the right!</p>
+<div class="card-panel brown lighten-5 large z-depth-1">
+  <div class="row">
+    <div class="col s10 offset-s1">
+      <h1 class="brown-text text-darken-2">Edit This Version For: <%= @version.article.title %></h1>
+      <p id="markdown-instructions">If you would like to create section titles for your article, begin the line with a pound symbol (#) and press enter to start a new line for the content of that section. To create a new paragraph, press enter. If you would like to make text <strong>bold</strong>, put an asterisk (*) before and after the text you would like to make bold. For <em>italics</em>, put an underscore (_) before and after the text you wish to italicize. For example:
+        <ul>
+          <li>#This Text Would Display as a Section Title</li>
+          <li>The word *bold* will appear in bold text</li>
+          <li>This is how we make _italics_ appear in our text</li>
+        </ul>
+      </p>
+      <p>Have fun! Write your content on the left and see a LIVE preview on the right!</p>
+    </div>
   </div>
-</div>
 
 
-<div class="row">
-  <form class="col l6 s6" id="create-entry-form" action="/articles/<%= @version.article.to_param %>" method="POST">
+  <div class="row">
+    <form class="col l6 s6" id="create-entry-form" action="/articles/<%= @version.article.to_param %>" method="POST">
 
     <div class="row">
       <div class="input-field">
         <textarea class="materialize-textarea" id="user-generated-content" name="version[content]" placeholder="Start Typing!"></textarea>
         <label for="version[content]">Content</label>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="input-field">
-        <textarea class="materialize-textarea" name="version[footnotes]" placeholder="Put your sources here"></textarea>
-        <label for="version[footnotes]">Footnotes</label>
+      <div class="row">
+        <div class="input-field">
+          <textarea class="materialize-textarea" name="version[footnotes]" placeholder="Put your sources here"></textarea>
+          <label for="version[footnotes]">Footnotes</label>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="input-field">
-        <textarea class="materialize-textarea" name="categories" placeholder="Categories (separated by commas)"></textarea>
-        <label for="categories">Categories</label>
+      <div class="row">
+        <div class="input-field">
+          <textarea class="materialize-textarea" name="categories" placeholder="Categories (separated by commas)"></textarea>
+          <label for="categories">Categories</label>
+        </div>
       </div>
+
+      <button class="btn waves-effect green darken-1 waves-light" type="submit" name="action">Create New Version
+         <i class="material-icons">send</i>
+      </button>
+    </form>
+    <% if @version.is_published == false %>
+      <a href="/articles/<%= @version.article.to_param %>/versions/<%= @version.id %>/publish">Publish Article</a>
+      <p>Caution: Once you publish an article, the current version can no longer be edited.</p>
+    <% end %>
+    <div class="col l5 s6" id="preview-markdown">Preview</div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="row">
+    <div class="col s6 offset-s3">
+      <p>Caution: Once you delete an article, it will be permanently removed from the website.</p>
     </div>
-
-    <button class="btn waves-effect green darken-1 waves-light" type="submit" name="action">Create New Version
-       <i class="material-icons">send</i>
-    </button>
-  </form>
-  <% if @version.is_published == false %>
-    <a href="/articles/<%= @version.article.to_param %>/versions/<%= @version.id %>/publish">Publish Article</a>
-    <p>Caution: Once you publish an article, the current version can no longer be edited.</p>
-  <% end %>
-  <div class="col l5 s6">Preview
-    <div id="preview-markdown"></div>
   </div>
-</div>
-
-<div class="divider"></div>
-<div class="row">
-  <div class="col s6 offset-s3">
-    <p>Caution: Once you delete an article, it will be permanently removed from the website.</p>
+  <div class="row">
+    <form class="col s6 offset-s4" action="/articles/<%= @version.article.to_param %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button class="btn waves-effect green darken-1 waves-light" type="submit" name="action">Delete Article</button>
+    </form>
   </div>
-</div>
-<div class="row">
-  <form class="col s6 offset-s4" action="/articles/<%= @version.article.to_param %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <button class="btn waves-effect green darken-1 waves-light" type="submit" name="action">Delete Article</button>
-  </form>
-</div>
 
+  </div>
 </div>

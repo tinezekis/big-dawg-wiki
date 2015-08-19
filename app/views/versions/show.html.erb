@@ -1,109 +1,114 @@
 <div class="row">
-  <h1 class="brown-text text-darken-2"><%= @version.article.title %></h1>
-</div>
-
-<!-- This is the div for the category "sidebar"... I'm not sure where you would like it so I'm just going to leave it here...-->
-<div>
-  <% if @categories.length > 0 %>
-    <p>Related Categories and Articles:</p>
-    <ul>
-      <% @categories.each do |category| %>
-        <li><a href="/categories/<%=category.to_params%>"><strong><%= category.name %></strong></a>
-          <% if category.most_recent_associated_versions.length > 0 %>
-            <ul>
-            <% category.most_recent_associated_versions.each do |version| %>
-              <li><a href= "/articles/<%=version.article.to_param %>"><%= version.article.title %></a></li>
-            <% end %>
-            </ul></li>
-          <% end %>
-      <% end %>
-    </ul>
-  <% end %>
-</div>
-
-
-<% if @version.is_most_recent == false %>
-  <% most_recent = @version.article.current_version %>
-  <div>
-    <p class="brown-text text-darken-2">There is a more recent version of this article, which you can view <a href="/articles/<%= @version.article.to_param %>/versions/<%= most_recent.id %>">here</a>.</p>
-  </div>
-<% end %>
-
-<div class="row">
-  <% if @sections.length > 0 %>
-    <div class="col l6 s12">
-      <h4 class="brown-text text-darken-2">Contents</h4>
-      <ul>
-        <% section_num = 0 %>
-        <% @sections.each do |section| %>
-          <li><a class="cyan-text text-lighten-1" href="#<%= section_num %>"><%= section %></a></li>
-          <% section_num += 1 %>
-        <% end %>
-      </ul>
+  <div class="card-panel col l10 s12 brown lighten-5 large z-depth-1">
+    <div class="row">
+      <h1 class="brown-text text-darken-2"><%= @version.article.title %></h1>
     </div>
 
-  <div class="col l5 s12">
-  <h4 class="brown-text text-darken-2">Written by <%= @version.article.orig_author.username %></h4>
-    <% if @version.article.orig_author != @version.updating_author %>
-    <h5 class="brown-text text-darken-2">Edited by <%= @version.updating_author.username %></h5>
-    <% end %>
+    <div class="row">
+      <% if @sections.length > 0 %>
+        <div class="col l6 s12">
+          <h4 class="brown-text text-darken-2">Contents</h4>
+          <ul>
+            <% section_num = 0 %>
+            <% @sections.each do |section| %>
+              <li><a class="cyan-text text-lighten-1" href="#<%= section_num %>"><%= section %></a></li>
+              <% section_num += 1 %>
+            <% end %>
+          </ul>
+        </div>
 
-    <% if current_user == @version.article.orig_author || current_user.permission_level == "big_dawg" %>
-      <%= link_to 'Wassup Big Dawg, wanna edit / delete this ish?', edit_version_path(@version.article, @version), class: "cyan-text text-lighten-1" %>
-    <% end %>
-  </div>
+      <div class="col l5 s12">
+        <h4 class="brown-text text-darken-2">Written by <%= @version.article.orig_author.username %></h4>
+        <% if @version.article.orig_author != @version.updating_author %>
+          <h5 class="brown-text text-darken-2">Edited by <%= @version.updating_author.username %></h5>
+        <% end %>
 
-  </div>
-<% end %>
+        <% if @version.is_published && !@version.is_most_recent %>
+          <% most_recent = @version.article.current_version %>
+          <% if most_recent %>
+            <div>
+              <p class="brown-text text-darken-2">There is a more recent version of this article, which you can view <a href="/articles/<%= @version.article.to_param %>/versions/<%= most_recent.id %>">here</a>.</p>
+            </div>
+          <% end %>
+        <% end %>
 
-<div class="row">
-  <div class="col s6 offset-s3">
-    <% if @version.footnotes == nil || @version.footnotes == '' %>
-    <p id="footnote-warning" class="brown-text text-darken-2">Warning: The article you are viewing does not have any footnote citations. The content may not be accurate</p>
-    <% end %>
-  </div>
-</div>
-
-<div class="divider"></div>
-<div class="section brown-text text-darken-2">
-  <%= @markdown_content.html_safe %>
-</div>
-
-<% if @version.footnotes %>
-  <div class="divider"></div>
-  <div class="section">
-
-    <h5 class="brown-text text-darken-2">Footnotes</h5>
-    <p class="brown-text text-darken-2"><%= @version.footnotes %></p>
-  </div>
-<% end %>
+        <% if current_user == @version.article.orig_author || current_user.permission_level == "big_dawg" %>
+          <%= link_to 'Wassup Big Dawg, wanna edit / delete this ish?', edit_version_path(@version.article, @version), class: "cyan-text text-lighten-1" %>
+        <% end %>
+        </div>
+      </div>
 
 
-<% if @version.article.versions.length > 1 %>
-  <div class="divider"></div>
-  <div class="section">
-   <h5 class="brown-text text-darken-2">See All Versions of This Article</h5>
-    <ul>
-      <% @version.article.versions.each do |version| %>
-        <li><a class="cyan-text text-lighten-1" href="/articles/<%= version.article.to_param %>/versions/<%= version.id %>">version id: <%= version.id %> (updated by <%= version.updating_author.username %>)</a></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+    <div class="row">
+      <div class="col s6 offset-s3">
+        <% if @version.footnotes == nil || @version.footnotes == '' %>
+        <p id="footnote-warning" class="brown-text text-darken-2">Warning: The article you are viewing does not have any footnote citations. The content may not be accurate</p>
+        <% end %>
+      </div>
+    </div>
 
-<div class="divider"></div>
-<div class="section">
-  <div class="row">
-    <% if @version.article.orig_author == current_user || current_user.permission_level == 'big_dawg' %>
-      <div class="s12">
-        <a class="cyan-text text-lighten-1" href="/articles/<%= @version.article.to_param %>/new_version">Make a new version of this article.</a>
+    <div class="divider"></div>
+    <div class="section brown-text text-darken-2">
+      <%= @markdown_content.html_safe %>
+    </div>
+
+    <% if @version.footnotes %>
+      <div class="divider"></div>
+      <div class="section">
+        <h5 class="brown-text text-darken-2">Footnotes</h5>
+        <p class="brown-text text-darken-2"><%= @version.footnotes %></p>
       </div>
     <% end %>
 
-    <% if @version.is_published == false || current_user.permission_level == 'big_dawg' %>
-    <div class="s12">
-      <a class="cyan-text text-lighten-1" href="/articles/<%= @version.article.to_param %>/versions/<%= @version.id %>/edit">Edit / Publish Article </a>
-    </div>
+
+    <% if @version.article.versions.length > 1 %>
+      <div class="divider"></div>
+      <div class="section">
+       <h5 class="brown-text text-darken-2">See All Versions of This Article</h5>
+        <ul>
+          <% @version.article.versions.each do |version| %>
+            <li><a class="cyan-text text-lighten-1" href="/articles/<%= version.article.to_param %>/versions/<%= version.id %>">version id: <%= version.id %> (updated by <%= version.updating_author.username %>)</a></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
+
+    <div class="divider"></div>
+    <div class="section">
+
+      <div class="row">
+        <% if @version.article.orig_author == current_user || current_user.permission_level == 'big_dawg' %>
+          <div class="col s12">
+            <a class="cyan-text text-lighten-1" href="/articles/<%= @version.article.to_param %>/new_version">Make a new version of this article.</a>
+          </div>
+        <% end %>
+
+        <% if @version.is_published == false && @version.updating_author == current_user || current_user.permission_level == 'big_dawg' %>
+          <div class="col s12">
+            <a class="cyan-text text-lighten-1" href="/articles/<%= @version.article.to_param %>/versions/<%= @version.id %>/edit">Edit / Publish Article </a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  <!-- This is the div for the category "sidebar"... I'm not sure where you would like it so I'm just going to leave it here...-->
+  <div class="col l2 s12">
+    <% if @categories.length > 0 %>
+      <p>Related Categories and Articles:</p>
+      <ul>
+        <% @categories.each do |category| %>
+          <li><a href="/categories/<%=category.to_params%>"><strong><%= category.name %></strong></a>
+            <% if category.most_recent_associated_versions.length > 0 %>
+              <ul>
+              <% category.most_recent_associated_versions.each do |version| %>
+                <li><a href= "/articles/<%=version.article.to_param %>"><%= version.article.title %></a></li>
+              <% end %>
+              </ul></li>
+            <% end %>
+        <% end %>
+      </ul>
+      <% end %>
+    <% end %>
+    </div>
   </div>
 </div>

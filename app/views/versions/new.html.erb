@@ -1,6 +1,50 @@
 <div class="row">
 	<div class="col s10 offset-s1">
-		<h1 class="brown-text text-darken-2">New Version For: <%= @version.article.title %></h1>
+		<h1 class="brown-text text-darken-2">New Content For <%= @display.article.title %></h1>
+
+<% if @display.version %>
+
+	<div id='current-version-preview-container'>
+	<!-- this should be made a partial -->
+		<div class="row">
+	  <div class="col s6 offset-s4">
+	  <h4>Written by <%= @display.article.orig_author.username %></h4>
+	    <% if @display.edited_by_second_user? %>
+	    <h5>Edited by <%= @display.version.updating_author.username %></h5>
+	    <% end %>
+	  </div>
+
+		<div class="row">
+		  <div class="col s6 offset-s3">
+		  </div>
+		</div>
+
+		<div class="row">
+		  <div class="col s6 offset-s3">
+		    <% if @display.doesnt_have_footnotes? %>
+		    <p id="footnote-warning">Warning: The article you are viewing does not have any footnote citations. The content may not be accurate</p>
+		    <% end %>
+		  </div>
+		</div>
+
+		<div class="divider"></div>
+		<div class="section">
+		  <%= @display.markdown_content.html_safe %>
+		</div>
+
+		<% if @display.version.footnotes %>
+		  <div class="divider"></div>
+		  <div class="section">
+
+		    <h5>Footnotes</h5>
+		    <p><%= @display.version.footnotes %></p>
+		  </div>
+		<% end %>
+
+	</div>
+<% end %>
+
+
     <p id="markdown-instructions">If you would like to create section titles for your article, begin the line with a pound symbol (#) and press enter to start a new line for the content of that section. To create a new paragraph, press enter. If you would like to make text <strong>bold</strong>, put an asterisk (*) before and after the text you would like to make bold. For <em>italics</em>, put an underscore (_) before and after the text you wish to italicize. For example:
       <ul>
         <li>#This Text Would Display as a Section Title</li>
@@ -10,31 +54,31 @@
     </p>
     <p>Have fun! Write your content on the left and see a LIVE preview on the right!</p>
 	</div>
-</div>
 
 <div class="row">
 	<form class="col l6 s6" id="create-entry-form" action="/articles/<%= @version.article.to_param %>" method="POST">
+	<input name="authenticity_token" type="hidden" value="token_value">
 
-		<div class="row">
-			<div class="input-field">
-			  <textarea class="materialize-textarea" id="user-generated-content" name="version[content]" placeholder="Start Typing!"></textarea>
-			  <label for="version[content]">Content</label>
+			<div class="row">
+				<div class="input-field">
+				  <textarea class="materialize-textarea" id="user-generated-content" name="version[content]" placeholder="Start Typing!"></textarea>
+				  <label for="version[content]">Content</label>
+			  </div>
 		  </div>
-	  </div>
 
-	  <div class="row">
-	  	<div class="input-field">
-	  		<textarea class="materialize-textarea" name="version[footnotes]" placeholder="Put your sources here"></textarea>
-	  		<label for="version[footnotes]">Footnotes</label>
-	  	</div>
-	  </div>
+		  <div class="row">
+		  	<div class="input-field">
+		  		<textarea class="materialize-textarea" name="version[footnotes]" placeholder="Put your sources here"></textarea>
+		  		<label for="version[footnotes]">Footnotes</label>
+		  	</div>
+		  </div>
 
-	  <div class="row">
-	  	<div class="input-field">
-	  		<textarea class="materialize-textarea" name="categories" placeholder="Categories (separated by commas)"></textarea>
-	  		<label for="categories">Categories</label>
-	  	</div>
-	  </div>
+		  <div class="row">
+		  	<div class="input-field">
+		  		<textarea class="materialize-textarea" name="categories" placeholder="Categories (separated by commas)"></textarea>
+		  		<label for="categories">Categories</label>
+		  	</div>
+		  </div>
 
 	  <button class="btn waves-effect green darken-1 waves-light" type="submit" name="action">Create New Version
 	     <i class="material-icons">send</i>
