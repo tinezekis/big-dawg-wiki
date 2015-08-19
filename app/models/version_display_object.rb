@@ -21,6 +21,7 @@ class VersionDisplayObject
 	def set_current_version
 		@version	= @article.current_version || Version.new
 		# what does this return if there is no current version?
+		# It returns nil if we use Version.new
 	end
 
 	def set_sections_and_markdown
